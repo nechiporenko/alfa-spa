@@ -1,9 +1,10 @@
 ﻿@import "../bower_components/neat/app/assets/stylesheets/neat-helpers";
 
-$max-width: em(960);
+$max-width: em(940);
 $mobile: new-breakpoint(min-width em(480));
 $tablet: new-breakpoint(min-width em(768));
 $desktop: new-breakpoint(min-width em(1002));
+$large: new-breakpoint(min-width em(1216));
 
 $column: golden-ratio(1em, 3) !default;
 $gutter: golden-ratio(1em, 3) !default;

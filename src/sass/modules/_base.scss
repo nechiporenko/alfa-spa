@@ -8,6 +8,8 @@
 $project-font-size:14px; //in px
 $project-line-height:18px; //in px
 
+$menu-breakpoint:em(992);
+
 $grid-gutter: flex-gutter();
 $border-radius:4px;
 
@@ -19,6 +21,7 @@ $primary:#ae9675;
 
 //fonts
 $font-base:'Circe-Light';
+$font-bold:'Circe-Bold';
 $font-title:'Lora-Regular';
 
 

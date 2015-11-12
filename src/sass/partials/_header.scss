@@ -1,6 +1,12 @@
 @import "../modules/base";
+@import "header/_lang.scss";
+@import "header/_hero.scss";
 @import "header/_logo.scss";
 
 .header{
    
 }
+.header--hero{
+    position:relative;
+}
+

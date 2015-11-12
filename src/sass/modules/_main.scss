@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6, .g-title-h1, .g-title-h2, .g-title-h3, .g-title-h4 {
   @include px2rem(margin-bottom, $project-line-height);
   line-height:strip-units($project-line-height/16);
   font-family:$font-title;
-  font-weight:normal;
+  font-weight:400;
 }
 .g-title-h1, .g-title-h2, .g-title-h3, .g-title-h4{
     display:block;
@@ -62,6 +62,12 @@ h1, h2, h3, h4, h5, h6, .g-title-h1, .g-title-h2, .g-title-h3, .g-title-h4 {
 
 .g-brand-color{
     color:$primary;
+}
+
+b,
+strong{
+    font-family:$font-bold;
+    font-weight:700;
 }
 
 /* Links */
@@ -84,7 +90,7 @@ ol ul {
     @include px2rem(margin, $project-line-height/2 0 $project-line-height/2 30px);
 }
 
-.g-clear-list{
+.g-clearlist{
     list-style-type:none;
     margin:0;
     padding:0;

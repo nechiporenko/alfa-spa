@@ -7,12 +7,6 @@
   "ascent": 850,
   "glyphs": [
     {
-      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
-      "css": "search",
-      "code": 59392,
-      "src": "fontawesome"
-    },
-    {
       "uid": "bf882b30900da12fca090d9796bc3030",
       "css": "mail",
       "code": 59393,
@@ -28,42 +22,6 @@
       "uid": "4a74a0f87d4089efe7aba1825bff4193",
       "css": "copyright",
       "code": 59413,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "8e04c98c8f5ca0a035776e3001ad2638",
-      "css": "facebook",
-      "code": 59409,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "b8d0c7d76e87b94882329a88e8e43d3d",
-      "css": "gplus",
-      "code": 59411,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "4c1ef492f1d2c39a2250ae457cee2a6e",
-      "css": "instagramm",
-      "code": 59415,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "627abcdb627cb1789e009c08e2678ef9",
-      "css": "twitter",
-      "code": 59410,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "f3d95e13eb43f3f6b8efe1eb424a1e3b",
-      "css": "vkontakte",
-      "code": 59412,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "a9862b9d5197886c1ad693ecd7120b31",
-      "css": "youtube",
-      "code": 59397,
       "src": "fontawesome"
     },
     {
@@ -103,34 +61,70 @@
       "src": "entypo"
     },
     {
-      "uid": "7e89c12b577c31bc91bfb61bb597f01f",
-      "css": "down-dir",
+      "uid": "58b78b6ca784d5c3db5beefcd9e18061",
+      "css": "left-small",
       "code": 59407,
-      "src": "entypo"
+      "src": "typicons"
     },
     {
-      "uid": "9aeaf29161eb005a308bbd624d6e066a",
-      "css": "left-dir",
-      "code": 59408,
-      "src": "entypo"
+      "uid": "877a233d7fdca8a1d82615b96ed0d7a2",
+      "css": "right-small",
+      "code": 59404,
+      "src": "typicons"
     },
     {
-      "uid": "ff9a85aa20950dcc0615a2707a2b3f8e",
-      "css": "right-dir",
-      "code": 59414,
-      "src": "entypo"
+      "uid": "661bd5ba1dad15ad9acbfcd8b8af76f3",
+      "css": "quote-left",
+      "code": 59409,
+      "src": "iconic"
     },
     {
-      "uid": "401b644723fb2f20b0df30cce7745c18",
-      "css": "up-dir",
-      "code": 59416,
-      "src": "entypo"
+      "uid": "bc0af4824c8eedcad7bc0d35911dac2a",
+      "css": "quote-right",
+      "code": 59410,
+      "src": "iconic"
     },
     {
       "uid": "in76hg99crrkpcbz2rjnmgbiw74s72y0",
       "css": "ok",
       "code": 59394,
       "src": "modernpics"
+    },
+    {
+      "uid": "c21d309f797d3644dc8d28c4617738ce",
+      "css": "left",
+      "code": 59408,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "1d35198f5190ec004dd4ec742fbe19ca",
+      "css": "right",
+      "code": 59405,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "e566d3f1d24f22981f6552d5188e7265",
+      "css": "gplus",
+      "code": 59397,
+      "src": "zocial"
+    },
+    {
+      "uid": "12db1f260b5b2ccd1aa4d8942cc7f6dd",
+      "css": "vk",
+      "code": 59402,
+      "src": "zocial"
+    },
+    {
+      "uid": "57a4f84c40a0c44d47387105f162a427",
+      "css": "youtube",
+      "code": 59403,
+      "src": "zocial"
+    },
+    {
+      "uid": "6f7586c6f99798c3c1de6123d1f6cfa9",
+      "css": "facebook",
+      "code": 59392,
+      "src": "zocial"
     }
   ]
 }

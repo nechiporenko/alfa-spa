@@ -1,4 +1,18 @@
 ﻿@import "../../modules/_base.scss";
 
-/*Site Logo*/
-
+/*Header Hero Logo*/
+.logo{
+    margin:0;
+    text-align:center;
+}
+.logo__img{
+    @include px2rem(margin-bottom, 60px);
+}
+.logo__title{
+    @include font-size(36px);
+    line-height:1.5;
+    text-transform:uppercase;
+}
+.logo__caption{
+    display:block;
+}
