@@ -1,0 +1,8 @@
+@import "../modules/base";
+
+.footer{
+    @include px2rem(padding, $project-line-height 0);
+    font-size:75%;
+    text-align:center;
+    background:#f5f5f5;
+}
