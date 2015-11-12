@@ -1,0 +1,41 @@
+﻿@import "../../modules/_base.scss";
+/*Slideout Mobile Menu Core*/
+.slideout-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    width:em(256);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    @include linear-gradient(to bottom, #444, #222);
+    color:#fff;
+    display: none;
+}
+
+.slideout-panel,
+#content{
+    position:relative;
+    z-index: 1;
+    min-height:100%;
+    background:#fff;
+    box-sizing:border-box;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+    overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+    display: block;
+}
+
+
+.lt-ie10 #mobile_menu{
+    display:none;
+}
+

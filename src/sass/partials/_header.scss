@@ -2,19 +2,5 @@
 @import "header/_logo.scss";
 
 .header{
-    @include px2rem(padding, $project-line-height/2 0);
-    background:#f5f5f5;
-}
-.header__title{
-    margin-bottom:0;
-    float:left;
-    @include font-size(16px);
-
-    @include media($mobile){
-        @include font-size(24px);
-    }
-
-    @include media($tablet){
-        @include font-size(40px);
-    }
+   
 }
