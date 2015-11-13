@@ -1,2 +1,67 @@
 ﻿/* Desktop Menu */
 @import "../../modules/_base.scss";
+.d-menu{
+    @include px2rem(height, 36px);
+    background:$bg-alt;
+    position:relative;
+    box-sizing:border-box;
+
+    @media(min-width:$menu-breakpoint){
+        @include px2rem(height, 90px);
+    }
+}
+.d-menu__inner{
+    @extend .g-container;
+}
+.menu{
+    @extend .g-clearlist;
+    text-align: justify;
+    line-height: 0;
+    font-size: 1px;
+    text-align-last: justify;
+    display:none;
+
+    &:after{
+        width: 100%;
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+        content: '';
+        display: inline-block;
+    }
+
+    @media(min-width:$menu-breakpoint){
+        display:block;
+    }
+}
+.menu__item{
+    display:inline-block;
+    line-height: 1;
+    vertical-align: top;
+    @include font-size(18px);
+}
+.menu__link{
+    display:inline-block;
+    @include px2rem(padding, 36px 0);
+    text-decoration:none;
+    color:$text-color;
+    &:hover,
+    &:active{
+        color:$primary;
+    }
+}
+.menu__link--current{
+    color:$primary;
+    cursor:default;
+}
+
+/*Menu Logo*/
+.menu__logo{
+    @include px2rem(height, 36px);
+    @include px2rem(line-height, 36px);
+    float:left;
+
+    @media(min-width:$menu-breakpoint){
+        display:none;
+    }
+}

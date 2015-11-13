@@ -1,6 +1,6 @@
 ﻿@import "../../modules/_base.scss";
 /*Slideout Mobile Menu Core*/
-.slideout-menu {
+.slideout-menu{
     position: fixed;
     left: 0;
     top: 0;
@@ -34,8 +34,10 @@
     display: block;
 }
 
-
-.lt-ie10 #mobile_menu{
+.no-js #slide{
+    display:none;
+}
+.lt-ie10 #slide{
     display:none;
 }
 

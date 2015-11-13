@@ -49,7 +49,48 @@ jQuery(document).ready(function ($) {
     var $window = $(window),
         $body = $('body');
 
-    
+    //
+    // Запускаем моб.меню
+    //---------------------------------------------------------------------------------------
+    var initMobileMenu = (function () {
+        if (!$('html').hasClass('lt-ie9')) {
+            var slideout = new Slideout({
+                'panel': document.getElementById('page'),
+                'menu': document.getElementById('slide'),
+                'padding': 256,
+                'tolerance': 70
+            });
+            // Показать-Скрыть
+            $('.controls').on('click', '.menu__btn', function () {
+                slideout.toggle();
+            });
+            //Закроем по клику по заголовку
+            $('#slide').on('click', '.m-menu__title', function () {
+                slideout.close();
+            });
+
+            //При ресайзе с маленького экрана на большой - спрячем моб.меню
+            function closeMobileMenu() {
+                winW = $window.width();
+                if (winW > 750 && slideout.isOpen()) {
+                    slideout.close();
+                }
+            }
+            $(window).on('resize', function () {
+                setTimeout(closeMobileMenu, 500);
+            });
+
+            //Гармошка - покажем-спрячем подменю
+            $('.js-menu').on('click', '.m-menu__link--has-menu', function (e) {
+                e.preventDefault();
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active').next('ul').slideUp('fast');
+                } else {
+                    $(this).addClass('active').next('ul').slideDown('fast');
+                }
+            });
+        }
+    })();
    
 
     //

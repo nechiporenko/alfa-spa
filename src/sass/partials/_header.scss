@@ -1,6 +1,6 @@
 @import "../modules/base";
-@import "header/_lang.scss";
-@import "header/_hero.scss";
+@import "header/_lang.scss"; //блок с переключалками языка + кнопка моб-меню (стили самой кнопки - в папке Меню)
+@import "header/_hero.scss"; //топ-блок на главной странице
 @import "header/_logo.scss";
 
 .header{

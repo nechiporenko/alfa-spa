@@ -1,0 +1,23 @@
+﻿@import "../../modules/_base.scss";
+/*Mobile Menu Toggle Button */
+.menu__btn{
+    padding:0;
+    margin:0;
+    float:right;
+    @include px2rem(height, 36px);//высота кнопки - такая же как у ссылок выбора языка
+    @include px2rem(line-height, 36px);
+    border:none;
+    background:transparent;
+    @include font-size(14px);
+    text-transform:uppercase;
+    outline:0;
+    color:$text-color;
+
+    &:hover{
+        color:$primary;
+    }
+   
+    @include media(min-width $menu-breakpoint){//показали десктоп-меню - спрятали кнопку переключения
+        display:none;
+    }
+}

@@ -1,0 +1,81 @@
+﻿@import "../../modules/_base.scss";
+/*Mobile Menu Style*/
+.m-menu{
+    @extend .g-clearlist;
+}
+
+.m-menu__title{//по клику, будем закрывать моб.меню скриптом
+    display:block;
+    @include px2rem(height, 36px);
+    @include px2rem(line-height, 36px);
+    @include px2rem(padding, 0 30px 0 5px);
+    position:relative;
+    @include font-size(18px);
+    color:$primary;
+    cursor:pointer;
+
+    &:after{
+        content:'\e803';
+        font-family:'fontello';
+        @include font-size(24px);
+        color:$primary;
+        position:absolute;
+        right:10px;
+    }
+}
+.m-menu__logo{
+    @include px2rem(width, 34px);
+    height:auto;
+    @include px2rem(margin-right, 10px);
+}
+.m-menu__link{
+    display:block;
+    @include px2rem(padding, 7px 10px 7px 5px);
+    border-top:1px solid #808080;
+    border-bottom:1px solid #000;
+    @include font-size(18px);
+    line-height:1.16;
+    color:#fff;
+    text-decoration:none;
+    &:hover,
+    &:active{
+        color:$primary;
+    }
+}
+.m-menu__link--current{
+    color:$primary;
+}
+
+.m-menu__link--has-menu{
+    position:relative;
+    @include px2rem(padding-right, 30px);
+    color:#d1d1d1;
+
+    &:after{
+        content:'\e813';
+        font-family:'fontello';
+        position:absolute;
+        right:10px;
+        @include transition-property(transform);
+        @include transition-duration(.3s);
+    }
+}
+
+.m-menu__link--has-menu.active{
+    &:after{
+        @include transform(rotate(180deg));
+    }
+}
+
+/*Mobile sub-menu*/
+.m-submenu{
+    @extend .g-clearlist;
+    display:none;
+}
+.m-submenu__link{
+    @extend .m-menu__link;
+    @include px2rem(padding-left, 25px);
+}
+.m-submenu__link--current{
+    color:$primary;
+}
