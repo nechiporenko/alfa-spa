@@ -2,7 +2,7 @@
 /*Header Hero Section*/
 .hero{
     width:100%;
-    @include px2rem(padding-top, 54px);
+    @include px2rem(padding-top, 54px);//в этом отступе расположен блок lang с абс.позиционированием
     position:relative;
     box-sizing:border-box;
 
@@ -13,16 +13,16 @@
         bottom:0; left:0;
         background:$primary;
         z-index:-1;
-        display:none;
+        display:none;//заливка половины экрана бронзовым цветом. На маленьких экранах она не нужно
 
-        @include media($tablet){
+        @include media($tablet){//сложили сетку - залили левую половину блока бронзой 
             display:block;
         }
     }
 }
 
 .hero__wrap{
-    @include media($tablet){
+    @include media($tablet){//эмулируем таблицу, чтобы выровнять лого и цитату по высоте
         display:table;
         width:100%;
         max-width:em(940);
@@ -78,7 +78,6 @@
 }
 
 .h-about__quote{
-    margin:0;
     @include font-size(18px);
     line-height:1.5;
     text-align:center;
