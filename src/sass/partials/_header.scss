@@ -4,9 +4,18 @@
 @import "header/_logo.scss";
 
 .header{
-   
+    width:100%;
 }
 .header--hero{
     position:relative;
+}
+
+
+#page.fixed-d-menu{
+    @include px2rem(padding-top, 90px);
+    .header{
+        position:fixed;
+        top:0; left:0;
+    }
 }
 

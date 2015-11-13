@@ -1,15 +1,38 @@
 // Application Scripts:
 
+// Узнаем размеры окна браузера
+// Запускаем моб.меню
+// Десктоп-меню: ховер-эффект при наведении на ссылку
+// Меняем прозрачность десктоп-меню при скролле контента
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
 // Модальное окно
 // Если браузер не знает о svg-картинках
-
 jQuery(document).ready(function ($) {
     //Кэшируем
     var $window = $(window),
-        $body = $('body');
+        $body = $('body'),
+        BREAKPOINT=768, //брекпоинт медиа-запросов
+        winH = 0,//будем хранить высоту окна браузера
+        winW = 0;//будем хранить ширину окна браузера
+
+    //
+    // Узнаем размеры окна браузера
+    //---------------------------------------------------------------------------------------
+    var getWindowHeight = (function () {
+        winH = verge.viewportH(); //будем использовать verge - плагин для медиа-запросов
+        return winH;
+    })();
+    var getWindowWidth = (function () {
+        winW = verge.viewportW();
+        return winW;
+    })();
+
+    $window.on('resize', function () {//при резайзе окна получим актуальные значения
+        setTimeout(getWindowHeight, 300);
+        setTimeout(getWindowWidth, 300);
+    });
 
     //
     // Запускаем моб.меню
@@ -53,7 +76,63 @@ jQuery(document).ready(function ($) {
             });
         }
     })();
-   
+
+    //
+    // Десктоп-меню: ховер-эффект при наведении на ссылку
+    //---------------------------------------------------------------------------------------
+    var hoverDesktopMenu = (function () {
+        var $menu = $('.menu'),
+            $link = $menu.find('a');
+        $link.hover(function () {
+            $menu.addClass('hover');
+        }, function () {
+            $menu.removeClass('hover');
+        });
+    })();
+
+    //
+    // Меняем прозрачность десктоп-меню при скролле контента
+    //---------------------------------------------------------------------------------------
+    var addOpacityToMenu = (function () {
+        var $content = $('#content'),
+            $header = $('.header'),
+            topOffset = 90,//высота десктоп-меню
+            isHomePage=false,
+            flag=false,
+            offset = 0;
+
+        if ($header.hasClass('header--hero')) {
+            isHomePage = true; //флаг Главной страницы
+            $('.d-menu').wrap('<div class="d-menu__wrap"></div>');//обернем десктоп-меню
+            var $wrapper = $('.d-menu__wrap');
+        }
+        $(window).on('scroll', function () {
+            offset = $content.offset().top - $window.scrollTop();
+            if (offset >= topOffset && flag) {
+                $header.removeClass('scrolled');
+                flag = false;
+                if (isHomePage) {
+                    unstickHeader();
+                }
+            };
+            if (offset < topOffset && !flag) {
+                $header.addClass('scrolled');
+                flag = true;
+                if (isHomePage) {
+                    stickHeader();
+                }
+            };
+        });
+
+        function stickHeader() {//фиксируем хидер при скролле Главной страницы
+            $wrapper.css('height', topOffset);
+            $header.addClass('fixed');
+        }
+        function unstickHeader() {//убираем фиксацию
+            $wrapper.removeAttr('style', 'height');
+            $header.removeClass('fixed');
+        }
+    })();
 
     //
     // Сообщения об отправке формы

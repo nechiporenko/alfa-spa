@@ -36,18 +36,49 @@
 /*Slideout mobile menu core https://github.com/Mango/slideout  Licensed under MIT */
 !function (e) { if ("object" == typeof exports && "undefined" != typeof module) module.exports = e(); else if ("function" == typeof define && define.amd) define([], e); else { var t; "undefined" != typeof window ? t = window : "undefined" != typeof global ? t = global : "undefined" != typeof self && (t = self), t.Slideout = e() } }(function () { var e, t, n; return function i(e, t, n) { function o(r, a) { if (!t[r]) { if (!e[r]) { var u = typeof require == "function" && require; if (!a && u) return u(r, !0); if (s) return s(r, !0); var l = new Error("Cannot find module '" + r + "'"); throw l.code = "MODULE_NOT_FOUND", l } var f = t[r] = { exports: {} }; e[r][0].call(f.exports, function (t) { var n = e[r][1][t]; return o(n ? n : t) }, f, f.exports, i, e, t, n) } return t[r].exports } var s = typeof require == "function" && require; for (var r = 0; r < n.length; r++) o(n[r]); return o }({ 1: [function (e, t, n) { "use strict"; var i = e("decouple"); var o = e("emitter"); var s; var r = false; var a = window.document; var u = a.documentElement; var l = window.navigator.msPointerEnabled; var f = { start: l ? "MSPointerDown" : "touchstart", move: l ? "MSPointerMove" : "touchmove", end: l ? "MSPointerUp" : "touchend" }; var c = function v() { var e = /^(Webkit|Khtml|Moz|ms|O)(?=[A-Z])/; var t = a.getElementsByTagName("script")[0].style; for (var n in t) { if (e.test(n)) { return "-" + n.match(e)[0].toLowerCase() + "-" } } if ("WebkitOpacity" in t) { return "-webkit-" } if ("KhtmlOpacity" in t) { return "-khtml-" } return "" }(); function h(e, t) { for (var n in t) { if (t[n]) { e[n] = t[n] } } return e } function p(e, t) { e.prototype = h(e.prototype || {}, t.prototype) } function d(e) { e = e || {}; this._startOffsetX = 0; this._currentOffsetX = 0; this._opening = false; this._moved = false; this._opened = false; this._preventOpen = false; this._touch = e.touch === undefined ? true : e.touch && true; this.panel = e.panel; this.menu = e.menu; if (this.panel.className.search("slideout-panel") === -1) { this.panel.className += " slideout-panel" } if (this.menu.className.search("slideout-menu") === -1) { this.menu.className += " slideout-menu" } this._fx = e.fx || "ease"; this._duration = parseInt(e.duration, 10) || 300; this._tolerance = parseInt(e.tolerance, 10) || 70; this._padding = this._translateTo = parseInt(e.padding, 10) || 256; this._orientation = e.side === "right" ? -1 : 1; this._translateTo *= this._orientation; if (this._touch) { this._initTouchEvents() } } p(d, o); d.prototype.open = function () { var e = this; this.emit("beforeopen"); if (u.className.search("slideout-open") === -1) { u.className += " slideout-open" } this._setTransition(); this._translateXTo(this._translateTo); this._opened = true; setTimeout(function () { e.panel.style.transition = e.panel.style["-webkit-transition"] = ""; e.emit("open") }, this._duration + 50); return this }; d.prototype.close = function () { var e = this; if (!this.isOpen() && !this._opening) { return this } this.emit("beforeclose"); this._setTransition(); this._translateXTo(0); this._opened = false; setTimeout(function () { u.className = u.className.replace(/ slideout-open/, ""); e.panel.style.transition = e.panel.style["-webkit-transition"] = e.panel.style[c + "transform"] = e.panel.style.transform = ""; e.emit("close") }, this._duration + 50); return this }; d.prototype.toggle = function () { return this.isOpen() ? this.close() : this.open() }; d.prototype.isOpen = function () { return this._opened }; d.prototype._translateXTo = function (e) { this._currentOffsetX = e; this.panel.style[c + "transform"] = this.panel.style.transform = "translate3d(" + e + "px, 0, 0)" }; d.prototype._setTransition = function () { this.panel.style[c + "transition"] = this.panel.style.transition = c + "transform " + this._duration + "ms " + this._fx }; d.prototype._initTouchEvents = function () { var e = this; this._onScrollFn = i(a, "scroll", function () { if (!e._moved) { clearTimeout(s); r = true; s = setTimeout(function () { r = false }, 250) } }); this._preventMove = function (t) { if (e._moved) { t.preventDefault() } }; a.addEventListener(f.move, this._preventMove); this._resetTouchFn = function (t) { if (typeof t.touches === "undefined") { return } e._moved = false; e._opening = false; e._startOffsetX = t.touches[0].pageX; e._preventOpen = !e._touch || !e.isOpen() && e.menu.clientWidth !== 0 }; this.panel.addEventListener(f.start, this._resetTouchFn); this._onTouchCancelFn = function () { e._moved = false; e._opening = false }; this.panel.addEventListener("touchcancel", this._onTouchCancelFn); this._onTouchEndFn = function () { if (e._moved) { e._opening && Math.abs(e._currentOffsetX) > e._tolerance ? e.open() : e.close() } e._moved = false }; this.panel.addEventListener(f.end, this._onTouchEndFn); this._onTouchMoveFn = function (t) { if (r || e._preventOpen || typeof t.touches === "undefined") { return } var n = t.touches[0].clientX - e._startOffsetX; var i = e._currentOffsetX = n; if (Math.abs(i) > e._padding) { return } if (Math.abs(n) > 20) { e._opening = true; var o = n * e._orientation; if (e._opened && o > 0 || !e._opened && o < 0) { return } if (o <= 0) { i = n + e._padding * e._orientation; e._opening = false } if (!e._moved && u.className.search("slideout-open") === -1) { u.className += " slideout-open" } e.panel.style[c + "transform"] = e.panel.style.transform = "translate3d(" + i + "px, 0, 0)"; e.emit("translate", i); e._moved = true } }; this.panel.addEventListener(f.move, this._onTouchMoveFn) }; d.prototype.enableTouch = function () { this._touch = true; return this }; d.prototype.disableTouch = function () { this._touch = false; return this }; d.prototype.destroy = function () { this.close(); a.removeEventListener(f.move, this._preventMove); this.panel.removeEventListener(f.start, this._resetTouchFn); this.panel.removeEventListener("touchcancel", this._onTouchCancelFn); this.panel.removeEventListener(f.end, this._onTouchEndFn); this.panel.removeEventListener(f.move, this._onTouchMoveFn); a.removeEventListener("scroll", this._onScrollFn); this.open = this.close = function () { }; return this }; t.exports = d }, { decouple: 2, emitter: 3 }], 2: [function (e, t, n) { "use strict"; var i = function () { return window.requestAnimationFrame || window.webkitRequestAnimationFrame || function (e) { window.setTimeout(e, 1e3 / 60) } }(); function o(e, t, n) { var o, s = false; function r(e) { o = e; a() } function a() { if (!s) { i(u); s = true } } function u() { n.call(e, o); s = false } e.addEventListener(t, r, false) } t.exports = o }, {}], 3: [function (e, t, n) { "use strict"; var i = function (e, t) { if (!(e instanceof t)) { throw new TypeError("Cannot call a class as a function") } }; n.__esModule = true; var o = function () { function e() { i(this, e) } e.prototype.on = function t(e, n) { this._eventCollection = this._eventCollection || {}; this._eventCollection[e] = this._eventCollection[e] || []; this._eventCollection[e].push(n); return this }; e.prototype.once = function n(e, t) { var n = this; function i() { n.off(e, i); t.apply(this, arguments) } i.listener = t; this.on(e, i); return this }; e.prototype.off = function o(e, t) { var n = undefined; if (!this._eventCollection || !(n = this._eventCollection[e])) { return this } n.forEach(function (e, i) { if (e === t || e.listener === t) { n.splice(i, 1) } }); if (n.length === 0) { delete this._eventCollection[e] } return this }; e.prototype.emit = function s(e) { var t = this; for (var n = arguments.length, i = Array(n > 1 ? n - 1 : 0), o = 1; o < n; o++) { i[o - 1] = arguments[o] } var s = undefined; if (!this._eventCollection || !(s = this._eventCollection[e])) { return this } s = s.slice(0); s.forEach(function (e) { return e.apply(t, i) }); return this }; return e }(); n["default"] = o; t.exports = n["default"] }, {}] }, {}, [1])(1) });
 
+
+/*!
+ * verge 1.9.1+201402130803
+ * https://github.com/ryanve/verge
+ * MIT License 2013 Ryan Van Etten
+ */
+!function (a, b, c) { "undefined" != typeof module && module.exports ? module.exports = c() : a[b] = c() }(this, "verge", function () { function a() { return { width: k(), height: l() } } function b(a, b) { var c = {}; return b = +b || 0, c.width = (c.right = a.right + b) - (c.left = a.left - b), c.height = (c.bottom = a.bottom + b) - (c.top = a.top - b), c } function c(a, c) { return a = a && !a.nodeType ? a[0] : a, a && 1 === a.nodeType ? b(a.getBoundingClientRect(), c) : !1 } function d(b) { b = null == b ? a() : 1 === b.nodeType ? c(b) : b; var d = b.height, e = b.width; return d = "function" == typeof d ? d.call(b) : d, e = "function" == typeof e ? e.call(b) : e, e / d } var e = {}, f = "undefined" != typeof window && window, g = "undefined" != typeof document && document, h = g && g.documentElement, i = f.matchMedia || f.msMatchMedia, j = i ? function (a) { return !!i.call(f, a).matches } : function () { return !1 }, k = e.viewportW = function () { var a = h.clientWidth, b = f.innerWidth; return b > a ? b : a }, l = e.viewportH = function () { var a = h.clientHeight, b = f.innerHeight; return b > a ? b : a }; return e.mq = j, e.matchMedia = i ? function () { return i.apply(f, arguments) } : function () { return {} }, e.viewport = a, e.scrollX = function () { return f.pageXOffset || h.scrollLeft }, e.scrollY = function () { return f.pageYOffset || h.scrollTop }, e.rectangle = c, e.aspect = d, e.inX = function (a, b) { var d = c(a, b); return !!d && d.right >= 0 && d.left <= k() }, e.inY = function (a, b) { var d = c(a, b); return !!d && d.bottom >= 0 && d.top <= l() }, e.inViewport = function (a, b) { var d = c(a, b); return !!d && d.bottom >= 0 && d.right >= 0 && d.top <= l() && d.left <= k() }, e });
+jQuery.extend(verge);
 // Application Scripts:
 
+// Узнаем размеры окна браузера
+// Запускаем моб.меню
+// Десктоп-меню: ховер-эффект при наведении на ссылку
+// Меняем прозрачность десктоп-меню при скролле контента
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
 // Модальное окно
 // Если браузер не знает о svg-картинках
-
 jQuery(document).ready(function ($) {
     //Кэшируем
     var $window = $(window),
-        $body = $('body');
+        $body = $('body'),
+        BREAKPOINT=768, //брекпоинт медиа-запросов
+        winH = 0,//будем хранить высоту окна браузера
+        winW = 0;//будем хранить ширину окна браузера
+
+    //
+    // Узнаем размеры окна браузера
+    //---------------------------------------------------------------------------------------
+    var getWindowHeight = (function () {
+        winH = verge.viewportH(); //будем использовать verge - плагин для медиа-запросов
+        return winH;
+    })();
+    var getWindowWidth = (function () {
+        winW = verge.viewportW();
+        return winW;
+    })();
+
+    $window.on('resize', function () {//при резайзе окна получим актуальные значения
+        setTimeout(getWindowHeight, 300);
+        setTimeout(getWindowWidth, 300);
+    });
 
     //
     // Запускаем моб.меню
@@ -91,7 +122,63 @@ jQuery(document).ready(function ($) {
             });
         }
     })();
-   
+
+    //
+    // Десктоп-меню: ховер-эффект при наведении на ссылку
+    //---------------------------------------------------------------------------------------
+    var hoverDesktopMenu = (function () {
+        var $menu = $('.menu'),
+            $link = $menu.find('a');
+        $link.hover(function () {
+            $menu.addClass('hover');
+        }, function () {
+            $menu.removeClass('hover');
+        });
+    })();
+
+    //
+    // Меняем прозрачность десктоп-меню при скролле контента
+    //---------------------------------------------------------------------------------------
+    var addOpacityToMenu = (function () {
+        var $content = $('#content'),
+            $header = $('.header'),
+            topOffset = 90,//высота десктоп-меню
+            isHomePage=false,
+            flag=false,
+            offset = 0;
+
+        if ($header.hasClass('header--hero')) {
+            isHomePage = true; //флаг Главной страницы
+            $('.d-menu').wrap('<div class="d-menu__wrap"></div>');//обернем десктоп-меню
+            var $wrapper = $('.d-menu__wrap');
+        }
+        $(window).on('scroll', function () {
+            offset = $content.offset().top - $window.scrollTop();
+            if (offset >= topOffset && flag) {
+                $header.removeClass('scrolled');
+                flag = false;
+                if (isHomePage) {
+                    unstickHeader();
+                }
+            };
+            if (offset < topOffset && !flag) {
+                $header.addClass('scrolled');
+                flag = true;
+                if (isHomePage) {
+                    stickHeader();
+                }
+            };
+        });
+
+        function stickHeader() {//фиксируем хидер при скролле Главной страницы
+            $wrapper.css('height', topOffset);
+            $header.addClass('fixed');
+        }
+        function unstickHeader() {//убираем фиксацию
+            $wrapper.removeAttr('style', 'height');
+            $header.removeClass('fixed');
+        }
+    })();
 
     //
     // Сообщения об отправке формы

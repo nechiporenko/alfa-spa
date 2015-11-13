@@ -1,0 +1,55 @@
+﻿@import "../../modules/_base.scss";
+/*Feature - Page Text Block*/
+.feature{
+    @include px2rem(margin, 0 auto 2*$project-line-height);
+    @include px2rem(width, 220px);
+
+    @include media($tablet){
+        margin-left:unset;
+        margin-right:unset;
+
+        &.feature--center{
+            margin-left:auto;
+            margin-right:auto;
+        }
+        &.feature--last{
+            float:right;
+        }
+    }
+
+    &:hover{
+        .feature__title{
+            color:$primary;
+        }
+    }
+}
+
+.feature__number{
+    @include px2rem(margin-bottom, $project-line-height);
+    @include font-size(12px);
+    text-align:center;
+}
+.feature__title{
+    @include px2rem(margin-bottom, $project-line-height);
+    font-family:$font-title;
+    text-align:center;
+    @include font-size(24px);
+    @include transition-property(color);
+    @include transition-duration(.1s);
+}
+.feature__info{
+    @include px2rem(margin-bottom, $project-line-height);
+    @include font-size(14px);
+    text-align:center;
+}
+
+/*Feature Block Button*/
+.feature__btn{
+    display:inline-block;
+    @include px2rem(height, 36px);
+    @include px2rem(line-height, 36px);
+    @include px2rem(width, 220px);
+    border:1px solid $primary;
+    background:#fff;
+    @include hide-text;
+}

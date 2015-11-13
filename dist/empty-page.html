@@ -15,34 +15,98 @@
     <![endif]-->
 </head>
 <body>
-    <header class="header" role="banner">
-		<div class="g-container">
-			<a href="#" class="header__logo">Site Logo</a>
-		</div>
-	</header>
-    <nav class="g-container" role="navigation">
-        <ul class="menu js-menu">
-            <li class="menu__item"><a href="#" class="menu__link">Home</a></li>
+    <div id="page" class="fixed-d-menu">
+        <header class="header">
+            <div class="d-menu">
+                <div class="controls">
+                    <div class="controls__wrap">
+                        <a href="index.html" class="menu__logo">
+                            <img src="img/logo.svg" alt="Alfa SPA" />
+                        </a>
+                        <ul class="lang-menu">
+                            <li class="lang-menu__item">
+                                <a href="#" hreflang="uk" class="lang-menu__link">ua</a>
+                            </li>
+                            <li class="lang-menu__item">
+                                <a href="#" hreflang="ru" class="lang-menu__link lang-menu__link--current">ru</a>
+                            </li>
+                            <li class="lang-menu__item">
+                                <a href="#" hreflang="en" class="lang-menu__link">eng</a>
+                            </li>
+                        </ul>
+                        <button class="menu__btn" type="button"><i class="icon-menu"></i> Меню</button>
+                    </div>
+                </div><!--/controls-->
+                <nav class="d-menu__inner">
+                    <ul class="menu">
+                        <li class="menu__item">
+                            <a href="index.html" class="menu__link menu__link--current">Главная</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="press.html" class="menu__link">Пресс-центр</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="catalog.html" class="menu__link">Каталог</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="portfolio.html" class="menu__link">Портфолио</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="design.html" class="menu__link">Проектирование</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="training.html" class="menu__link">Обучение</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="contacts.html" class="menu__link">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div><!--/d-menu-->
+        </header>
+        <main id="content" style="height:1800px">text</main>
+    </div><!--/#page-->
+
+    <nav id="slide">
+        <label class="m-menu__title"><img src="img/logo.svg" class="m-menu__logo" alt="Alfa-SPA" />Меню</label>
+        <ul class="m-menu js-menu">
+            <li>
+                <a href="index.html" class="m-menu__link m-menu__link--current">Главная</a>
+            </li>
+            <li>
+                <a href="press.html" class="m-menu__link">Пресс-центр</a>
+            </li>
+            <li>
+                <a href="catalog.html" class="m-menu__link">Каталог</a>
+            </li>
+            <li>
+                <a href="portfolio.html" class="m-menu__link">Портфолио</a>
+            </li>
+            <li>
+                <a href="design.html" class="m-menu__link">Проектирование</a>
+            </li>
+            <li>
+                <a href="training.html" class="m-menu__link">Обучение</a>
+            </li>
+            <li>
+                <a href="contacts.html" class="m-menu__link">Контакты</a>
+            </li>
+            <li>
+                <a href="/" class="m-menu__link m-menu__link--has-menu"><i class="icon-language"></i>Изменить язык</a>
+                <ul class="m-submenu">
+                    <li>
+                        <a href="#" hreflang="uk" class="m-submenu__link"><img src="img/uk.png" alt="uk" /> Украинский</a>
+                    </li>
+                    <li>
+                        <a href="#" hreflang="ru" class="m-submenu__link m-submenu__link--current"><img src="img/ru.png" alt="ru" /> Русский</a>
+                    </li>
+                    <li>
+                        <a href="#" hreflang="en" class="m-submenu__link"><img src="img/en.png" alt="en" /> English</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
-    <section class="g-container">
-        <h1>Title</h1>
-        <div class="g-row">
-            <main class="g-col g-col--two-thirds" role="main">
-                main content
-            </main>
-            <aside class="g-col g-col--one-third" role="complementary">
-                sidebar content
-            </aside>
-        </div>
-    </section>
-
-    <footer class="footer" role="contentinfo">
-        <div class="g-container">
-            <i class="icon-copyright"></i> 2015. Далі буде...
-        </div>
-    </footer>
-        
 
     <script src="js/vendor/modernizr.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

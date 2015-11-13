@@ -1,15 +1,40 @@
 ﻿/* Desktop Menu */
 @import "../../modules/_base.scss";
 .d-menu{
+    width:100%;
     @include px2rem(height, 36px);
-    background:$bg-alt;
+    background-color:$bg-alt;
     position:relative;
     box-sizing:border-box;
+    @include transition-property(background-color);
+    @include transition-duration(.7s);
+
 
     @media(min-width:$menu-breakpoint){
         @include px2rem(height, 90px);
     }
 }
+
+.scrolled .d-menu{//будем уменьшать прозрачность фона десктоп-меню при скролле контента
+    background-color:$bg-alt;
+    background-color:rgba($bg-alt, .8);
+    &:hover{
+        background-color:$bg-alt; //и делать непрозрачным при наведении
+    }
+}
+
+.fixed .d-menu{
+    position:fixed;
+    top:0; left:0;
+}
+
+.d-menu--hero{ //на главной странице покажем только на десктопе
+    display:none;
+    @media(min-width:$menu-breakpoint){
+        display:block;
+    }
+}
+
 .d-menu__inner{
     @extend .g-container;
 }
@@ -33,21 +58,34 @@
     @media(min-width:$menu-breakpoint){
         display:block;
     }
+
+    &.hover{//ховер-эффект
+        .menu__link{
+            opacity:.3;
+        }
+    }
 }
+
+
+
 .menu__item{
     display:inline-block;
-    line-height: 1;
     vertical-align: top;
+    line-height:100%;
     @include font-size(18px);
 }
 .menu__link{
-    display:inline-block;
-    @include px2rem(padding, 36px 0);
+    display:block;
+    @include px2rem(height, 90px);
+    @include px2rem(line-height, 90px);
     text-decoration:none;
+    white-space:nowrap;
     color:$text-color;
+    @include transition(opacity .7s linear);
+
     &:hover,
     &:active{
-        color:$primary;
+        opacity:1 !important;//при наведении текущий пункт не меняет прозрачности
     }
 }
 .menu__link--current{
@@ -55,8 +93,10 @@
     cursor:default;
 }
 
+
+
 /*Menu Logo*/
-.menu__logo{
+.menu__logo{//покажем только на маленьких экранах
     @include px2rem(height, 36px);
     @include px2rem(line-height, 36px);
     float:left;
