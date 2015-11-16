@@ -1,0 +1,26 @@
+﻿@import "../../modules/_base.scss";
+/*Partners Logo Slider*/
+.partners{
+    list-style-type:none;
+    padding:0;
+    overflow:hidden;
+}
+.partners__item{
+    float:left;
+    @include px2rem(width, 170px);
+}
+.partners__wrap{
+    @include px2rem(height, 140px);
+    position:relative;
+}
+.partners__img{
+    @extend .g-img-centered;
+    @include filter(grayscale(100%));
+    @include transition(opacity .3s ease);
+    opacity:.75;
+
+    &:hover{
+        opacity:1;
+        @include filter(grayscale(5%));
+    }
+}

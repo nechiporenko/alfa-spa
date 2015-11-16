@@ -1,0 +1,22 @@
+﻿@import "../../modules/_base.scss";
+/*Step - PAge Text Block*/
+.step{
+    @include px2rem(margin-bottom, 54px);
+    @include font-size(14px);
+}
+.step__num{
+    @include px2rem(margin-bottom, 36px);
+    @include font-size(12px);
+    text-transform:uppercase;
+}
+.step__title{
+    @include px2rem(margin-bottom, $project-line-height);
+    font-family:$font-title;
+    @include font-size(24px);
+}
+.step__subtitle{
+    @include px2rem(margin-bottom, 18px);
+    @include font-size(12px);
+    text-transform:uppercase;
+    color:$primary;
+}

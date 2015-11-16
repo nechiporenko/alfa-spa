@@ -1,0 +1,135 @@
+﻿@import "../../modules/_grid.scss";
+/*Grid blocks*/
+.grid{
+    @extend .g-clearlist;
+    @extend .g-clearfix;
+}
+.grid__item{
+    width:100%;
+    @include px2rem(margin-bottom, 22px);
+
+    @include media(min-width em(640)){
+        float:left;
+        width:(100%-$grid-gutter)/2;
+        margin-left:$grid-gutter;
+
+        &:nth-child(2n+1){
+            margin-left:0;
+        }
+    }
+
+    @include media($desktop){
+        width:(100%-$grid-gutter*2)/3;
+
+        &:nth-child(2n+1){
+            margin-left:$grid-gutter;
+        }
+
+        &:nth-child(3n+1){
+            margin-left:0;
+        }
+    }
+}
+.grid__link{
+    display:block;
+    @include px2rem(max-width, 300px);
+    margin:0 auto;
+    background:$bg-alt;
+    position:relative;
+    overflow:hidden;
+    color:$text-color;
+    text-decoration:none;
+
+    &:after{
+        content:'';
+        display:block;
+        padding-bottom:100%;
+    }
+}
+.grid__wrap{
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    margin:0;
+
+    &:before{
+        content:'';
+        display:block;
+        position:absolute;
+        top:0; left:0; right:0; bottom:0;
+        background:rgba(#000, .4);
+        z-index:1;
+        opacity:0;
+    }
+}
+.grid__img{
+    @extend .g-img-centered;
+    opacity:0;
+}
+.grid__num{
+    @include font-size(72px);
+    color:$primary;
+    line-height:1;
+    position:absolute;
+    @include px2rem(top, 18px);
+    @include px2rem(left, 18px);
+    z-index:2;
+}
+.grid__title{
+    position:absolute;
+    @include px2rem(left, 18px);
+    @include px2rem(right, 18px);
+    @include px2rem(bottom, 18px);
+    @include font-size(24px);
+    line-height:1.1;
+    z-index:2;
+}
+.grid__more{
+    position:absolute;
+    top:50%; left:0;
+    @include px2rem(margin-top, -10px);
+    width:100%;
+    text-align:center;
+    opacity:0;
+    z-index:3;
+}
+.grid__more-text{
+    display:inline-block;
+    @include font-size(12px);
+    text-transform:uppercase;
+    border-bottom:1px solid #fff;
+    color:#fff;
+}
+
+/*Grid Blocks Hover*/
+.grid__img,
+.grid__more,
+.grid__wrap:before,
+.grid__more{
+    @include transition(opacity 0.7s ease);
+}
+.grid__img{
+    @include transition(transform 4s ease-in);
+}
+.grid__num,
+.grid__title{
+    @include transition(color 0.7s ease);
+}
+
+.grid__link{
+    &:hover,
+    &:active{
+        outline:0;
+        .grid__img{
+            opacity:1;
+            @include transform(scale(1.2));
+        }
+        .grid__wrap:before,
+        .grid__more{
+            opacity:1;
+        }
+        .grid__num,
+        .grid__title{
+            color:#fff;
+        }
+    }
+}

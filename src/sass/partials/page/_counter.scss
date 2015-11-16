@@ -1,0 +1,20 @@
+﻿@import "../../modules/_base.scss";
+/*Counters*/
+.p-counter{
+    @include px2rem(padding, 2*$project-line-height 0 $project-line-height);
+    background:$bg-alt;
+}
+.p-counter__item{
+    @include px2rem(margin-bottom, $project-line-height);
+}
+.p-counter__title{
+    @extend .step__title;
+}
+.p-counter__subtitle{
+    @extend .step__subtitle;
+}
+.p-counter__num{
+    @include font-size(72px);
+    color:$primary;
+    line-height:1.125;
+}

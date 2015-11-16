@@ -24,6 +24,7 @@
     background:$bg-alt;
     text-align:center;
 }
+
 .p-divider__title{
     margin:0;
     @include px2rem(padding, 30px 0);
@@ -34,5 +35,14 @@
 
     @include media($tablet){
         @include px2rem(padding, 39px 0);
+    }
+}
+
+.p-divider--alt{
+    background:#fff;
+    .p-divider__title{
+        @include media($tablet){
+            @include px2rem(padding, 84px 0 48px);
+        }
     }
 }

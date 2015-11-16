@@ -189,6 +189,78 @@ jQuery(document).ready(function ($) {
         }
     })();
 
+
+
+    //
+    // Слайдер логотипов партнеров
+    //---------------------------------------------------------------------------------------
+    if ($('.js-slider-partners').length) {
+        initPartnersSlider();
+    };
+    function initPartnersSlider() {
+        var slider,
+        settings = function () {//будем показывать разное кол-во слайдов на разных разрешениях
+            var setting,
+                setting1 = {
+                    maxSlides: 1,
+                },
+                setting2 = {
+                    maxSlides: 2,
+                },
+                setting3 = {
+                    maxSlides: 3,
+                },
+                setting4 = {
+                    maxSlides: 4,
+                },
+                setting5 = {
+                    maxSlides: 5,
+                },
+                common = {
+                    minSlides: 1,
+                    moveSlides: 1,
+                    slideWidth: 170,
+                    slideMargin: 18,
+                    pager: false,
+                    controls: false,
+                    auto: true,
+                    pause: 6000
+                };
+
+            if (winW <= 400) {
+                setting = $.extend(setting1, common);
+            }
+            if (winW > 400 && winW <= 500) {
+                setting = $.extend(setting2, common);
+            }
+            if (winW > 500 && winW <= 760) {
+                setting = $.extend(setting3, common);
+            }
+            if (winW > 760 && winW <= 1000) {
+                setting = $.extend(setting4, common);
+            }
+            if (winW > 1000) {
+                setting = $.extend(setting5, common);
+            }
+            return setting;
+        };
+
+        function reloadSettings() {
+            var set = settings();
+            slider.reloadSlider($.extend(set, { startSlide: slider.getCurrentSlide() }));
+        }
+
+        var set = settings();
+        slider = $('.js-slider-partners').bxSlider(set);
+
+        $window.on('resize', function () {
+            setTimeout(reloadSettings, 500);
+        });
+    };
+
+
+
+
     //
     // Сообщения об отправке формы
     //---------------------------------------------------------------------------------------
