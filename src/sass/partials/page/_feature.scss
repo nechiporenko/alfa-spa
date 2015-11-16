@@ -42,14 +42,3 @@
     @include font-size(14px);
     text-align:center;
 }
-
-/*Feature Block Button*/
-.feature__btn{
-    display:inline-block;
-    @include px2rem(height, 36px);
-    @include px2rem(line-height, 36px);
-    @include px2rem(width, 220px);
-    border:1px solid $primary;
-    background:#fff;
-    @include hide-text;
-}

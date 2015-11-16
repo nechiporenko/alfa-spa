@@ -26,3 +26,92 @@
         outline:0;
     }
 }
+
+
+/*Styled button without text*/
+.p-btn{
+    display:inline-block;
+    @include px2rem(height, 36px);
+    @include px2rem(line-height, 36px);
+    @include px2rem(width, 220px);
+    border:1px solid $primary;
+    background:#fff;
+    @include hide-text;
+    position:relative;
+
+    &:before,
+    &:after{
+        content:'';
+        display:block;
+        position:absolute;
+        top:0; bottom:0;
+        background-repeat:repeat-x;
+    }
+
+    &:before{
+        left:10px;
+        right:50%;
+        background-image:url(../img/arrow-right.svg);
+        background-position:right center;
+    }
+    &:after{
+        left:50%;
+        right:10px;
+        background-image:url(../img/arrow-left.svg);
+        background-position:left center;
+    }
+
+    &:hover,
+    &:active{
+        &:before,
+        &:after{
+            @include animation-duration(1.4s);
+            @include animation-timing-function(ease);
+            @include animation-iteration-count(infinite);
+        }
+        &:before{
+            @include animation-name(slideLeft);
+        }
+        &:after{
+            @include animation-name(slideRight);
+        }
+        
+        .btn-link__inner{
+            opacity:0;
+        }
+    }
+}
+.p-btn__inner{
+    display:block;
+    position:absolute;
+    top:2%; right:2%; bottom:2%; left:2%;
+    @include radial-gradient(circle at 50% 50%, rgba(#fff, .9), transparent, transparent);
+    @include transition-property(opacity);
+    @include transition-duration(.3s);
+    z-index:1;
+}
+
+@include keyframes(slideLeft){
+    0%{
+        @include transform(scaleX(1) translateX(0));
+    }
+    50%{
+        @include transform(scaleX(.8) translateX(13%));
+    }
+    100%{
+        @include transform(scaleX(1) translateX(0));
+    }
+}
+
+@include keyframes(slideRight){
+    0%{
+        @include transform(scaleX(1) translateX(0));
+    }
+    50%{
+        @include transform(scaleX(.8) translateX(-13%));
+    }
+    100%{
+        @include transform(scaleX(1) translateX(0));
+    }
+}
+
