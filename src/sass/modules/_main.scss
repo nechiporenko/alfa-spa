@@ -98,15 +98,26 @@ ol ul {
 
 /* Blockquote */
 blockquote{
-    font-size:120%;
-    line-height:1.6;
-    font-style: italic;
-    @include px2rem(padding, 0 0 0 30px);
-    border-left:2px solid $primary;
+    font-style:normal;
+    @include font-size(18px);
+    text-align:center;
+    @include media($desktop){
+        @include font-size(24px);
+    }
 }
 cite{
     display:block;
-    font-size:75%;
+    @include px2rem(margin-top, $project-line-height);
+    font-family:$font-title;
+    font-style:normal;
+    @include font-size(18px);
+}
+.g-quote-num{
+    display:block;
+    @include px2rem(margin, $project-line-height 0);
+    @include font-size(12px);
+    color:$primary;
+    text-align:center;
 }
 
 

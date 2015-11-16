@@ -89,7 +89,8 @@ jQuery(document).ready(function ($) {
                 'panel': document.getElementById('page'),
                 'menu': document.getElementById('slide'),
                 'padding': 256,
-                'tolerance': 70
+                'tolerance': 70,
+                'side': 'right'
             });
             // Показать-Скрыть
             $('.controls').on('click', '.menu__btn', function () {
@@ -151,6 +152,14 @@ jQuery(document).ready(function ($) {
             isHomePage = true; //флаг Главной страницы
             $('.d-menu').wrap('<div class="d-menu__wrap"></div>');//обернем десктоп-меню
             var $wrapper = $('.d-menu__wrap');
+
+            //проверим, нет ли скролла при загрузке главной страницы
+            var offset = $content.offset().top - $window.scrollTop();
+            if (offset < topOffset) {//если есть - зафиксируем хидер
+                $header.addClass('scrolled');
+                flag = true;
+                stickHeader();
+            }
         }
         $(window).on('scroll', function () {
             offset = $content.offset().top - $window.scrollTop();

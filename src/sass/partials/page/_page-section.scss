@@ -2,9 +2,13 @@
 /*Page Section*/
 .p-section{
     @include px2rem(padding, 54px 0);
+
     @media (min-width:$tablet){
         @include px2rem(padding, 72px 0);
     }
+}
+.p-section--alt{
+    background:$bg-alt;
 }
 .p-section__title{
     @include px2rem(margin-bottom, 36px);

@@ -60,7 +60,8 @@
     @include px2rem(padding, 54px 20px);
     box-sizing:border-box;
     border:3px solid $primary;
-    position:relative;   
+    position:relative;
+    text-align:center;
 }
 .h-about__title{
     display:inline-block;
@@ -69,7 +70,6 @@
     color:$primary;
     @include font-size(36px);
     line-height:1;
-    text-align:center;
     background:#fff;
     position:absolute;
     @include px2rem(top, -18px);
@@ -78,9 +78,5 @@
 }
 
 .h-about__quote{
-    @include font-size(18px);
-    text-align:center;
-    @include media($desktop){
-        @include font-size(24px);
-    }
+    margin:0;
 }

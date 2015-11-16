@@ -63,6 +63,7 @@
 
     &:hover,
     &:active{
+        outline:0;
         &:before,
         &:after{
             @include animation-duration(1.4s);
@@ -76,11 +77,21 @@
             @include animation-name(slideRight);
         }
         
-        .btn-link__inner{
+        .p-btn__inner{
             opacity:0;
         }
     }
 }
+
+.no-svg .p-btn{
+    &:before{
+        background-image:url(../img/arrow-right.png);
+    }
+    &:after{
+        background-image:url(../img/arrow-left.png);
+    }
+}
+
 .p-btn__inner{
     display:block;
     position:absolute;
@@ -96,7 +107,7 @@
         @include transform(scaleX(1) translateX(0));
     }
     50%{
-        @include transform(scaleX(.8) translateX(13%));
+        @include transform(scaleX(.6) translateX(35%));
     }
     100%{
         @include transform(scaleX(1) translateX(0));
@@ -108,10 +119,11 @@
         @include transform(scaleX(1) translateX(0));
     }
     50%{
-        @include transform(scaleX(.8) translateX(-13%));
+        @include transform(scaleX(.6) translateX(-35%));
     }
     100%{
         @include transform(scaleX(1) translateX(0));
     }
 }
+
 
