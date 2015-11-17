@@ -1,7 +1,6 @@
 ﻿@import "../../modules/_base.scss";
 /*Scroll-up button*/
 .scroll-up-btn{
-    //@include px-to-rem(width, 50px);
     width:50px;
     width:rem(50);
     height:50px;
@@ -16,8 +15,8 @@
     outline:none;
     @include font-size(24px);
     position:fixed;
-    right:6px;
-    bottom:6px;
+    right:0;
+    bottom:0;
     opacity:.5;
     @include transition(.3s opacity);
     z-index:1000;

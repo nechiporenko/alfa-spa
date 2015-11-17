@@ -1,0 +1,58 @@
+﻿@import "../../modules/_base.scss";
+/*Footer Menu*/
+.f-menu{
+    @extend .g-clearlist;
+}
+.f-menu__item{
+    @include px2rem(margin-bottom, $project-line-height);
+}
+.f-menu__link{
+    color:$text-color;
+    text-decoration:none;
+    text-transform:uppercase;
+    @include font-size(12px);
+
+    &:hover,
+    &:active{
+        color:$primary;
+    }
+}
+
+/*Footer Phones*/
+.c-menu{
+    @extend .g-clearlist;
+}
+.c-menu__item{
+    @include px2rem(margin-bottom, 15px);
+}
+.c-menu__link{
+    @extend .f-menu__link;
+    @include font-size(18px);
+}
+
+/*Footer Social Links*/
+.social{
+    @extend .g-clearlist;
+    font-size:0;
+
+    @include media($tablet){
+        text-align:right;
+    }
+}
+.social__item{
+    display:inline-block;
+    @include px2rem(margin-left, 10px);
+    @include font-size(18px);
+
+    &:first-child{
+        margin-left:0;
+    }
+}
+.social__link{
+    color:$text-color;
+    text-decoration:none;
+    &:hover,
+    &:active{
+        color:$primary;
+    }
+}

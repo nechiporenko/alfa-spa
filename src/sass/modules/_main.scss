@@ -155,7 +155,7 @@ ol{
 hr {
     @include px2rem(margin, $project-line-height 0);
     border-width: 0;
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $primary;
 }
 
 /* Transitions */

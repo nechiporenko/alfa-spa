@@ -1,5 +1,66 @@
 @import "../modules/base";
-
+/*Footer Section*/
 .footer{
-   
+   @include px2rem(margin-top, 2*$project-line-height);
+   @include px2rem(padding, $project-line-height 0);
+   background:#fff;
+   text-align:center;
+
+   @include media($tablet){
+       @include px2rem(padding, 2*$project-line-height 0);
+       text-align:left;
+   }
+}
+
+.footer__title{
+    @include px2rem(margin-bottom, $project-line-height);
+    font-family:$font-title;
+    @include font-size(24px);
+    line-height:1;
+    color:$primary;
+
+    @include media($desktop){
+        @include px2rem(margin-bottom, 2*$project-line-height);
+    }
+}
+.footer__text{
+    @include font-size(12px);
+
+    @include media($tablet){
+        @include px2rem(padding-top, 6px);
+    }
+}
+
+/*Footer Contacts Info*/
+.f-contacts{
+    position:relative;
+
+    &:before{
+        content:'';
+        @include px2rem(width, 80px);
+        @include px2rem(height, 45px);
+        position:absolute;
+        right:0;
+        @include px2rem(top, -54px);
+        background-image:url(../img/logo.svg);
+        background-repeat:no-repeat;
+        background-size:contain;
+        display:none;
+        
+        @include media($tablet){
+            display:block;
+        }        
+    }
+}
+.f-contacts__hr{
+    @include px2rem(margin, 26px 0 26px);
+
+    @include media($tablet){
+        @include px2rem(max-width, 300px);
+    }
+}
+.f-contacts__addr{
+    @include margin(26px 0);
+    @include font-size(12px);
+    text-transform:uppercase;
 }
