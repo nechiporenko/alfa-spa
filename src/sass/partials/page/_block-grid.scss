@@ -1,39 +1,29 @@
 ﻿@import "../../modules/_grid.scss";
 /*Grid blocks*/
 .grid{
-    @extend .g-clearlist;
+    list-style-type:none;
+    padding:0;
+    @include px2rem(margin-left, -11px);
+    @include px2rem(margin-right, -11px);
     @extend .g-clearfix;
 }
 .grid__item{
+    float:left;
+    box-sizing:border-box;
+    @include px2rem(padding, 11px);
+    min-height:1px;
     width:100%;
-    @include px2rem(margin-bottom, 22px);
 
-    @include media(min-width em(640)){
-        float:left;
-        width:(100%-$grid-gutter)/2;
-        margin-left:$grid-gutter;
-
-        &:nth-child(2n+1){
-            margin-left:0;
-        }
+    @include media($mobile){
+        width:50%;
     }
 
-    @include media($desktop){
-        width:(100%-$grid-gutter*2)/3;
-
-        &:nth-child(2n+1){
-            margin-left:$grid-gutter;
-        }
-
-        &:nth-child(3n+1){
-            margin-left:0;
-        }
+    @include media($tablet){
+        width:(100%)/3;
     }
 }
 .grid__link{
     display:block;
-    @include px2rem(max-width, 300px);
-    margin:0 auto;
     background:$bg-alt;
     position:relative;
     overflow:hidden;
@@ -82,6 +72,14 @@
     @include font-size(24px);
     line-height:1.1;
     z-index:2;
+
+    @include media($mobile){
+        @include font-size(16px);
+    }
+
+    @include media($desktop){
+        @include font-size(24px);
+    }
 }
 .grid__more{
     position:absolute;

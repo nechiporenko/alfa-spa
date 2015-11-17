@@ -1,0 +1,122 @@
+﻿@import "../../modules/_base.scss";
+/*Random Grid blocks*/
+.p-grid{
+    @extend .grid;
+}
+.p-grid__item{
+    @extend .grid__item;
+}
+.p-grid__item--2x{
+    @include media($mobile){
+        width:100%;
+    }
+    
+    @include media($tablet){
+        width:2*(100%)/3;
+    }
+}
+
+.p-grid__link{
+    display:block;
+    text-decoration:none;
+    color:$text-color;
+    background:#808080;
+    position:relative;
+
+    &:after{
+        content:'';
+        display:block;
+        padding-bottom:100%;
+    }
+}
+.p-grid__wrap{
+    margin:0;
+    position:absolute;
+    top:0; right:0; bottom:0; left:0;
+}
+
+.p-grid__img{
+    @extend .g-img-centered;
+    z-index:1;
+}
+.p-grid__content{
+    position:absolute;
+    top:0; right:0; bottom:0; left:0;
+    z-index:2;
+    @include px2rem(padding, 44px);
+    @include font-size(14px);
+    
+    &:before{
+        content:'';
+        display:block;
+        position:absolute;
+        @include px2rem(top, 22px);
+        @include px2rem(right, 22px);
+        @include px2rem(bottom, 22px);
+        @include px2rem(left, 22px);
+        background:#fff;
+        background:rgba(#fff, .85);
+        z-index:-1;
+    }
+}
+
+.p-grid__title{
+    font-family:$font-title;
+    @include font-size(16px);
+    line-height:1.1;
+    color:$primary;
+    text-transform:uppercase;
+}
+
+.p-grid__item--2x{
+    .p-grid__title{
+        @include media($mobile){
+            @include font-size(24px);
+        }
+    }
+}
+
+.p-grid__quote{
+    @include px2rem(margin, 18px 0 0 0);
+    display:none;
+    @include media($mobile){
+        display:block;
+    }
+}
+.p-grid__more{
+    position:absolute;
+    @include px2rem(bottom, 44px);
+    left:0;
+    @include px2rem(margin-top, -10px);
+    width:100%;
+    text-align:center;
+    z-index:3;
+}
+.p-grid__more-text{
+    display:inline-block;
+    @include font-size(12px);
+    text-transform:uppercase;
+    border-bottom:2px solid $primary;
+    color:$primary;
+}
+
+/*Random Grid blocks hover*/
+.p-grid__content,
+.p-grid__more{
+    @include transition(opacity .7s ease);
+    @include media($desktop){
+        opacity:.3;
+    }
+}
+
+.p-grid__link{
+    &:hover,
+    &:active{
+        outline:0;
+        .p-grid__content,
+        .p-grid__more{
+            opacity:1;
+        }
+    }
+}
+

@@ -3,7 +3,7 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .g-container {
     @include outer-container();
-    @include px2rem(padding, 0 10px);
+    @include px2rem(padding, 0 11px);
     box-sizing:border-box;
 
     @include media($desktop){

@@ -6,9 +6,8 @@
     @include px2rem(padding, 0 30px);
     color:#fff;
     text-align: center;
-    @include font-size($project-line-height/2);
+    @include font-size(14px);
     @include px2rem(line-height, 38px);
-    letter-spacing:1px;
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
@@ -28,16 +27,20 @@
 }
 
 
-/*Styled button without text*/
+/*Styled button */
 .p-btn{
     display:inline-block;
     @include px2rem(height, 36px);
-    @include px2rem(line-height, 36px);
-    @include px2rem(width, 220px);
+    @include px2rem(line-height, 38px);
+    @include px2rem(padding, 0 10px);
     border:1px solid $primary;
+    text-decoration:none;
+    text-transform:uppercase;
+    white-space:nowrap;
+    @include font-size(14px);
     background:#fff;
-    @include hide-text;
     position:relative;
+    box-sizing:border-box;
 
     &:before,
     &:after{
@@ -46,17 +49,16 @@
         position:absolute;
         top:0; bottom:0;
         background-repeat:repeat-x;
+        @include transition(background-position .4s ease-out)
     }
 
     &:before{
-        left:10px;
-        right:50%;
+        @include px2rem(left, 10px);
         background-image:url(../img/arrow-right.svg);
         background-position:right center;
     }
     &:after{
-        left:50%;
-        right:10px;
+        @include px2rem(right, 10px);
         background-image:url(../img/arrow-left.svg);
         background-position:left center;
     }
@@ -64,21 +66,21 @@
     &:hover,
     &:active{
         outline:0;
+        
+        &:before{
+            background-position:left center;
+        }
+        &:after{
+            background-position:right center;
+        }
+    }
+
+
+    @include media($tablet){
+        @include px2rem(padding, 0 110px);
         &:before,
         &:after{
-            @include animation-duration(1.4s);
-            @include animation-timing-function(ease);
-            @include animation-iteration-count(infinite);
-        }
-        &:before{
-            @include animation-name(slideLeft);
-        }
-        &:after{
-            @include animation-name(slideRight);
-        }
-        
-        .p-btn__inner{
-            opacity:0;
+            @include px2rem(width, 90px);
         }
     }
 }
@@ -94,35 +96,83 @@
 
 .p-btn__inner{
     display:block;
-    position:absolute;
-    top:2%; right:2%; bottom:2%; left:2%;
-    @include radial-gradient(circle at 50% 50%, rgba(#fff, .9), transparent, transparent);
-    @include transition-property(opacity);
-    @include transition-duration(.3s);
-    z-index:1;
+    @include px2rem(height, 34px);
+    position:relative;
+
+    &:before,
+    &:after{
+        content:'';
+        position:absolute;
+        top:0; bottom:0;
+        @include px2rem(width, 80px);
+        z-index:1;
+        display:none;
+    }
+    &:before{
+        left:0;
+        @include px2rem(margin-left, -80px);
+        @include radial-gradient(circle at 100% 50%, #fff, transparent);
+    }
+    &:after{
+        right:0;
+        @include px2rem(margin-right, -80px);
+        @include radial-gradient(circle at 0% 50%, #fff, transparent);
+    }
+
+    @include media($desktop){
+        &:before,
+        &:after{
+            display:block;
+        }
+    }
 }
 
-@include keyframes(slideLeft){
-    0%{
-        @include transform(scaleX(1) translateX(0));
-    }
-    50%{
-        @include transform(scaleX(.6) translateX(35%));
-    }
-    100%{
-        @include transform(scaleX(1) translateX(0));
+/*Dark Gray Button*/
+.p-btn--dark{
+    background:$bg-alt;
+
+    .p-btn__inner{
+        &:before{
+            @include radial-gradient(circle at 100% 50%, $bg-alt, transparent);
+        }
+        &:after{
+            @include radial-gradient(circle at 0% 50%, $bg-alt, transparent);
+        }
     }
 }
 
-@include keyframes(slideRight){
-    0%{
-        @include transform(scaleX(1) translateX(0));
+
+/*Styled button without text*/
+.p-btn--short{
+    @include px2rem(width, 220px);
+    padding:0;
+    @include hide-text;
+
+    &:before{
+        width:auto;
+        right:50%;
     }
-    50%{
-        @include transform(scaleX(.6) translateX(-35%));
+    &:after{
+        width:auto;
+        left:50%;
     }
-    100%{
-        @include transform(scaleX(1) translateX(0));
+
+    .p-btn__inner{
+        position:absolute;
+        height:auto;
+        top:2%; right:2%; bottom:2%; left:2%;
+        @include radial-gradient(circle at 50% 50%, #fff, transparent, transparent);
+        z-index:1;
+        &:before,
+        &:after{
+            display:none;
+        }
+    }
+
+    &:hover{
+        .p-btn__inner{
+            @include radial-gradient(circle at 50% 50%, transparent 10%, #fff 100%, transparent);
+        }
     }
 }
 

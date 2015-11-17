@@ -30,12 +30,13 @@
     text-align:center;
 }
 .feature__title{
+    display:block;
     @include px2rem(margin-bottom, $project-line-height);
     font-family:$font-title;
     text-align:center;
+    text-decoration:none;
+    color:$text-color;
     @include font-size(24px);
-    @include transition-property(color);
-    @include transition-duration(.1s);
 }
 .feature__info{
     @include px2rem(margin-bottom, $project-line-height);

@@ -6,6 +6,7 @@
 }
 .p-counter__item{
     @include px2rem(margin-bottom, $project-line-height);
+    text-align:center;
 }
 .p-counter__title{
     @extend .step__title;

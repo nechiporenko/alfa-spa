@@ -16,8 +16,8 @@
 .partners__img{
     @extend .g-img-centered;
     @include filter(grayscale(100%));
-    @include transition(opacity .3s ease);
-    opacity:.75;
+    @include transition(opacity .7s ease);
+    opacity:.4;
 
     &:hover{
         opacity:1;

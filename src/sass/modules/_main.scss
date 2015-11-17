@@ -49,16 +49,20 @@ body{
 }
 
 /* Typography*/
-h1, h2, h3, h4, h5, h6, .g-title-h1, .g-title-h2, .g-title-h3, .g-title-h4 {
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   @include px2rem(margin-bottom, $project-line-height);
   line-height:strip-units($project-line-height/16);
-  font-family:$font-title;
   font-weight:400;
 }
-.g-title-h1, .g-title-h2, .g-title-h3, .g-title-h4{
-    display:block;
+
+.g-title{
+    font-family:$font-base;
+    @include font-size(12px);
+    text-transform:uppercase;
+    text-align:center;
 }
+
 
 .g-brand-color{
     color:$primary;
