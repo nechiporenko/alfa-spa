@@ -1,0 +1,7 @@
+﻿@import "../../modules/_base.scss";
+/*SEO block*/
+.seo{
+    @include font-size(14px);
+    border-bottom:1px solid $primary;
+    text-align:justify;
+}
