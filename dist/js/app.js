@@ -47,11 +47,14 @@ jQuery.extend(verge);
 // Application Scripts:
 
 // Узнаем размеры окна браузера
+// Узнаем значение скролла страницы
 // Запускаем моб.меню
 // Десктоп-меню: ховер-эффект при наведении на ссылку
 // Меняем прозрачность десктоп-меню при скролле контента
 // Слайдер логотипов партнеров
-
+// SEO-block - покажем скрытый текст по клику на ссылку "читать далее"
+// График цикла проектов на Главной
+// Анимация элементов страницы при скролле
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
@@ -61,7 +64,7 @@ jQuery(document).ready(function ($) {
     //Кэшируем
     var $window = $(window),
         $body = $('body'),
-        BREAKPOINT=768, //брекпоинт медиа-запросов
+        BREAKPOINT = 768, //брекпоинт медиа-запросов
         winH = 0,//будем хранить высоту окна браузера
         winW = 0;//будем хранить ширину окна браузера
 
@@ -261,12 +264,74 @@ jQuery(document).ready(function ($) {
     };
 
     //
-    // SEO-block - покажем скрытей текст
+    // SEO-block - покажем скрытый текст по клику на ссылку "читать далее"
     //---------------------------------------------------------------------------------------
-    $('.seo').one('click', '.seo__more', function (e) {
+    $('.seo').one('click', '.js-seo', function (e) {
         e.preventDefault();
         $(this).parents('.seo').find('.g-hidden').removeClass('g-hidden');
     });
+
+
+    //
+    // График цикла проектов на Главной
+    //---------------------------------------------------------------------------------------
+    function showGraph() {
+        $window.unbind('scroll', initGraph);
+        $('.graph__line').addClass('active');
+        setTimeout(function () {
+            $('.graph__part--1').fadeIn(1200, function () {
+                $('.graph__num--1').addClass('active');
+                $('.graph__part--2').fadeIn(1200, function () {
+                    $('.graph__num--2').addClass('active');
+                    $('.graph__part--3').fadeIn(1200, function () {
+                        $('.graph__num--3').addClass('active');
+                        $('.graph__part--4').fadeIn(1200, function () {
+                            $('.graph__num--4').addClass('active');
+                            $('.graph__part--5').fadeIn(1000, function () {
+                                $('.graph__num--5').addClass('active');
+                                $('.graph__part--6').fadeIn(800, function () {
+                                    $('.graph__num--6').addClass('active');
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        }, 3000); //3с - длительность css-анимации линии, после ее окончания начинаем поочередно показывать блоки диаграммы и номера блоков
+    };
+
+    function initGraph() {//покажем анимированную диаграмму, когда прокрутим страницу
+        if (verge.inY($('.graph'))) {
+            showGraph();
+        }
+    }
+
+    if ($('.graph').length) {
+        $window.bind('scroll', initGraph);
+    }
+
+
+    //
+    // Анимация элементов страницы при скролле
+    //---------------------------------------------------------------------------------------
+    function animateOnScroll() {
+        $('.animate').each(function () {
+            var $el = $(this);
+            if (verge.inY($el)) {
+                var animate = $el.data('animate');
+                $el.removeClass('animate').addClass('animated ' + animate);
+                if (!$('.animate').length) {
+                    $window.unbind('scroll', animateOnScroll);
+                }
+            }
+        });
+    }
+
+    if ($('.animate').length) {
+        $window.bind('scroll', animateOnScroll);
+    }
+
+    
 
     //
     // Сообщения об отправке формы
@@ -289,7 +354,7 @@ jQuery(document).ready(function ($) {
         var $scroller = $('<div class="scroll-up-btn"><i class="icon-up-open-big"></i></div>');
         $body.append($scroller);
         $window.on('scroll', function () {
-            if ($(this).scrollTop() > 300) {
+            if (verge.scrollY() > 300) {
                 $scroller.show();
             } else {
                 $scroller.hide();

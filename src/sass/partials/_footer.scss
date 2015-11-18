@@ -53,14 +53,14 @@
     }
 }
 .f-contacts__hr{
-    @include px2rem(margin, 26px 0 26px);
+    @include px2rem(margin, 26px 0 27px);
 
     @include media($tablet){
         @include px2rem(max-width, 300px);
     }
 }
 .f-contacts__addr{
-    @include margin(26px 0);
+    @include margin(25px 0);
     @include font-size(12px);
     text-transform:uppercase;
 }

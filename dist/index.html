@@ -196,7 +196,28 @@
 
             <div class="p-section p-section--alt">
                 <div class="g-container">
-                    <div class="g-row">
+                    <div class="graph">
+                        <div class="graph__line"></div>
+                        <div class="graph__part graph__part--top graph__part--1"></div>
+                        <span class="graph__num graph__num--top graph__num--1">1</span>
+
+                        <div class="graph__part graph__part--top graph__part--2"></div>
+                        <span class="graph__num graph__num--top graph__num--2">2</span>
+
+                        <div class="graph__part graph__part--top graph__part--3"></div>
+                        <span class="graph__num graph__num--top graph__num--3">3</span>
+
+                        <div class="graph__part graph__part--top graph__part--4"></div>
+                        <span class="graph__num graph__num--top graph__num--4">4</span>
+
+                        <div class="graph__part graph__part--bottom graph__part--5"></div>
+                        <span class="graph__num graph__num--bottom graph__num--5">5</span>
+
+                        <div class="graph__part graph__part--bottom graph__part--6"></div>
+                        <span class="graph__num graph__num--bottom graph__num--6">6</span>
+                    </div><!--/graph-->
+                    
+                    <div class="g-row animate" data-animate="fadeInUp">
                         <div class="g-col g-col--one-third">
                             <div class="step">
                                 <div class="step__num">Фаза 01</div>
@@ -222,7 +243,7 @@
                             </div><!--/step-->
                         </div><!--/g-col-->
                     </div><!--/g-row-->
-                    <div class="g-row">
+                    <div class="g-row animate" data-animate="fadeInUp">
                         <div class="g-col g-col--one-third">
                             <div class="step">
                                 <div class="step__num">Фаза 04</div>
@@ -486,9 +507,9 @@
                         <h2 class="g-title">SEO заголовок H2</h2>
                         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                         <p class="g-text-right">
-                            <a href="#" class="seo__more">Читать далее...</a>
+                            <a href="#seo" class="seo__more js-seo">Читать далее...</a>
                         </p>
-                        <div class="g-hidden">
+                        <div class="g-hidden" id="seo">
                             <h3 class="g-title">SEO подзаголовок H3</h3>
                             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
                         </div>

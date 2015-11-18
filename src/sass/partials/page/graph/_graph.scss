@@ -1,0 +1,223 @@
+﻿@import "../../../modules/_base.scss";
+/*Graph on Home Page*/
+.graph{
+    @include px2rem(margin, 2*$project-line-height 0);
+    padding-top:40.213%; //940x378
+    position:relative;
+}
+.graph__line{
+    @include px2rem(height, 2px);
+    background:$primary;
+    position:absolute;
+    left:0;
+    top:52.13%;
+    max-width:0;
+    @include transition(max-width 3s ease-in);
+
+    &:before,
+    &:after{
+        content:'';
+        display:block;
+        @include px2rem(width, 7px);
+        @include px2rem(height, 7px);
+        border-radius:50%;
+        background:$primary;
+        position:absolute;
+        @include px2rem(top, -3px);
+        opacity:0;
+        @include transition(opacity .3s ease);
+    }
+    &:before{
+        left:0;
+    }
+    &:after{
+        right:0;
+    }
+
+    &.active{
+        width:100%;
+        max-width:100%;
+        &:before,
+        &:after{
+            opacity:1;
+        }
+    }
+}
+
+/*Graph Parts (Diagramms)*/
+.graph__part{
+    position:absolute;
+    background-repeat:no-repeat;
+    background-size:100% 100% !important;
+    display:none;
+}
+
+.graph__part--top{
+    top:52.13%;
+    @include transform(translateY(-100%));
+}
+
+.graph__part--bottom{
+    top:52.6%;
+}
+
+.graph__part--1{
+    width:34.04%;
+    height:28.04%;
+    left:6.6%;
+    background:url(../img/graph/graph01.png);
+}
+
+.graph__part--2{
+    width:33.94%;
+    height:38.09%;
+    left:25.1%;
+    background:url(../img/graph/graph02.png);
+}
+.graph__part--3{
+    width:44.89%;
+    height:27.51%;
+    left:25.74%;
+    background:url(../img/graph/graph03.png);
+}
+.graph__part--4{
+    width:40%;
+    height:28.04%;
+    left:53.94%;
+    background:url(../img/graph/graph04.png);
+}
+
+.graph__part--5{
+    width:86.06%;
+    height:23.81%;
+    left:8.08%;
+    background:url(../img/graph/graph05.png);
+}
+
+.graph__part--6{
+    width:23.5%;
+    height:24.07%;
+    left:70.4%;
+    background:url(../img/graph/graph06.png);
+}
+
+
+/*Graph Part Numbers*/
+.graph__num{
+    display:block;
+    @include px2rem(width, 24px);
+    @include px2rem(height, 24px);
+    @include px2rem(line-height, 26px);
+    border-color:$primary;
+    @include px2rem(border-width, 1px);
+    border-style:solid;
+    border-radius:50%;
+    box-sizing:border-box;
+    background:#fff;
+    @include font-size(12px);
+    text-align:center;
+    position:absolute;
+    @include transition(opacity .3s ease-in);
+    opacity:0;
+
+    &:before,
+    &:after{
+        content:'';
+        display:none;
+        position:absolute;  
+    }
+    &:before{
+        @include px2rem(width, 7px);
+        @include px2rem(height, 7px);
+        border-radius:50%;
+        background:$primary;
+        left:50%;
+        @include px2rem(margin-left, -3px);
+        @include transition(opacity 3s ease-in);
+        opacity:0;
+    }
+    &:after{
+        width:1px;
+        background:$primary;
+        min-height:0;
+        height:0;
+        left:50%;
+        @include transition(min-height, 1s ease-in);
+    }
+
+
+    @include media(min-width em(640)){
+        @include px2rem(width, 36px);
+        @include px2rem(height, 36px);
+        @include px2rem(line-height, 38px);
+
+        &:before,
+        &:after{
+            display:block;
+        }
+    }
+
+    &.active{
+        opacity:1;
+
+        &:before{
+            opacity:1;
+        }
+        &:after{
+            min-height:210%;
+            height:210%;
+        }
+    }
+}
+.graph__num--top{
+    top:0;
+
+    &:before{
+        top:210%;
+        @include px2rem(margin-top, 32px);
+    }
+    &:after{
+        top:100%;
+    }
+}
+.graph__num--bottom{
+    bottom:0;
+
+    &:before{
+        bottom:210%;
+        @include px2rem(margin-bottom, 32px);
+    }
+    &:after{
+        bottom:100%;
+    }
+}
+
+.graph__num--1{
+    left:14.04%;
+}
+.graph__num--2,
+.graph__num--5{
+    left:36.7%;
+}
+.graph__num--3{
+    left:59.57%;
+}
+.graph__num--4,
+.graph__num--6{
+    left:82.13%;
+}
+
+/*Graph fallback*/
+.no-js,
+.no-cssanimations,
+.no-csstransforms{
+    .graph{
+        background:url(../img/graph/graph.png) center center no-repeat;
+        background-size:100% 100%;
+    }
+    .graph__line,
+    .graph__part,
+    .graph__num{
+        display:none !important;
+    }
+}
