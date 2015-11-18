@@ -131,3 +131,15 @@
         }
     }
 }
+
+.lt-ie9{
+    .grid__img{
+        display:none;
+    }
+    .grid__link{
+        &:hover,
+        &:active{
+            background:#bbb;
+        }
+    }
+}

@@ -285,6 +285,54 @@ jQuery(document).ready(function ($) {
         $window.bind('scroll', animateOnScroll);
     }
 
+    //
+    // Счетчики на странице
+    //---------------------------------------------------------------------------------------
+    function initCounters() {
+        $('.p-counter__item').each(function () {
+            var $el = $(this);
+            if (verge.inY($el) && $el.not('.animated')) {
+                $el.addClass('animated').find('.p-counter__num').each(function () {
+                    $(this).prop('Counter', 0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 4000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+            }
+            if (!$('.p-counter__item').not('.animated').length) {
+                $window.unbind('scroll', initCounters);
+            }
+        })
+    }
+
+    if ($('.p-counter__item').length) {
+        $window.bind('scroll', initCounters);
+    }
+
+
+
+    //
+    // Тултипы
+    //---------------------------------------------------------------------------------------
+    $('[data-qtip]').qtip({
+        content: {
+            attr: 'data-qtip'
+        },
+        position: {
+            target: 'mouse',
+            adjust: {
+                x: 15,
+                y:15,
+                resize: true
+            }
+        }
+    });
+
     
 
     //

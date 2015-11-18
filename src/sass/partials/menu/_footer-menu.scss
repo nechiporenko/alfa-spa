@@ -20,7 +20,14 @@
 
 /*Footer Phones*/
 .c-menu{
-    @extend .g-clearlist;
+    list-style-type:none;
+    @include px2rem(padding,0 0 8px 0);
+    @include px2rem(margin-bottom, 32px);
+    border-bottom:1px solid $primary;
+
+    @include media($desktop){
+        @include px2rem(max-width, 300px);
+    }
 }
 .c-menu__item{
     @include px2rem(margin-bottom, 15px);
