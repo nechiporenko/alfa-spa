@@ -26,9 +26,6 @@
 
 .p-slider__desktop{
     @include px2rem(height, 504px);
-    background-position:center center;
-    background-repeat:no-repeat;
-    background-size:cover;
     display:none;
    
     @include media($desktop){
@@ -38,7 +35,12 @@
 
 .p-slider__mobile{
     @extend .g-container;
-    margin:0;
+
+    &:after{
+        content:'';
+        display:block;
+        padding-top:53.6%;
+    }
 
     @include media($desktop){
         display:none;
@@ -48,6 +50,9 @@
 /*Slider hover*/
 .p-slider__desktop,
 .p-slider__mobile{
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;
     position:relative;
 
     &:before{
@@ -55,22 +60,13 @@
         display:block;
         position:absolute;
         top:0; bottom:0;
+        right:0; left:0;
         background:rgba(#000, .4);
         @include transition(opacity .4s ease);
         opacity:0;
     }
 }
-.p-slider__desktop{
-    &:before{
-        right:0; left:0;
-    }
-}
-.p-slider__mobile{
-    &:before{
-        @include px2rem(left, 11px);
-        @include px2rem(right, 11px);
-    }
-}
+
 
 
 .p-slider__link{
