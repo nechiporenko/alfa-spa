@@ -18,6 +18,13 @@
     }
 }
 
+.d-menu__wrap{//фиксим дергание на маленьких разрешениях на главной странице
+    display:none;
+    @media(min-width:$menu-breakpoint){
+        display:block;
+    }
+}
+
 .scrolled .d-menu{//будем уменьшать прозрачность фона десктоп-меню при скролле контента
     opacity:0.96;
     &:hover{
