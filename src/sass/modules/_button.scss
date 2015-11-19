@@ -111,12 +111,12 @@
     &:before{
         left:0;
         @include px2rem(margin-left, -80px);
-        @include radial-gradient(circle at 100% 50%, #fff, transparent);
+        @include radial-gradient(circle at 100% 50%, #fff, rgba(#fff, .1));
     }
     &:after{
         right:0;
         @include px2rem(margin-right, -80px);
-        @include radial-gradient(circle at 0% 50%, #fff, transparent);
+        @include radial-gradient(circle at 0% 50%, #fff, rgba(#fff, .1));
     }
 
     @include media($desktop){
@@ -133,10 +133,10 @@
 
     .p-btn__inner{
         &:before{
-            @include radial-gradient(circle at 100% 50%, $bg-alt, transparent);
+            @include radial-gradient(circle at 100% 50%, $bg-alt, rgba($bg-alt, .1));
         }
         &:after{
-            @include radial-gradient(circle at 0% 50%, $bg-alt, transparent);
+            @include radial-gradient(circle at 0% 50%, $bg-alt, rgba($bg-alt, .1));
         }
     }
 }
@@ -161,7 +161,7 @@
         position:absolute;
         height:auto;
         top:2%; right:2%; bottom:2%; left:2%;
-        @include radial-gradient(circle at 50% 50%, #fff, transparent, transparent);
+        @include radial-gradient(circle at 50% 50%, #fff, rgba(#fff, .1), rgba(#fff, .1));
         z-index:1;
         &:before,
         &:after{
@@ -171,7 +171,7 @@
 
     &:hover{
         .p-btn__inner{
-            @include radial-gradient(circle at 50% 50%, transparent 10%, #fff 100%, transparent);
+            @include radial-gradient(circle at 50% 50%, rgba(#fff, .1) 10%, #fff 100%, rgba(#fff, .1));
         }
     }
 }
