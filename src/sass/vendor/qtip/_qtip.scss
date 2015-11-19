@@ -10,7 +10,6 @@
 	min-width: 50px;
 
 	@include font-size(12px);
-    @include px2rem(line-height, 36px);
     text-transform:uppercase;
 
 	direction: ltr;
@@ -22,6 +21,7 @@
 	.qtip-content{
 		position: relative;
         @include px2rem(padding, 0 2px);
+        @include px2rem(line-height, 20px);
 		overflow: hidden;
 
 		text-align: left;
@@ -91,11 +91,11 @@
 
 /* Default tooltip style */
 .qtip-default{
+    border-bottom:2px solid #fff;
     background-color:#555;
     background-color:rgba(#555, .6);
     color:#fff;
     white-space:nowrap;
-    text-decoration:underline;
 }
 
 	.qtip-default .qtip-titlebar{
@@ -116,9 +116,9 @@
 
 /*Alt tooltip style*/
 .qtip-alt{
+    border-bottom:2px solid $primary;
     background-color:#fff;
     background-color:rgba(#fff,.1);
     color:$primary;
     white-space:nowrap;
-    text-decoration:underline;
 }
