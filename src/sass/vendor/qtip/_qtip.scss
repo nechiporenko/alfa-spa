@@ -11,6 +11,7 @@
 
 	@include font-size(12px);
     @include px2rem(line-height, 36px);
+    text-transform:uppercase;
 
 	direction: ltr;
 
@@ -20,7 +21,7 @@
 
 	.qtip-content{
 		position: relative;
-		padding: 5px 9px;
+        @include px2rem(padding, 0 2px);
 		overflow: hidden;
 
 		text-align: left;
@@ -90,14 +91,16 @@
 
 /* Default tooltip style */
 .qtip-default{
-	border: 1px solid #F1D031;
-
-	background-color: #FFFFA3;
-	color: #555;
+    background-color:#555;
+    background-color:rgba(#555, .6);
+    color:#fff;
+    white-space:nowrap;
+    text-decoration:underline;
 }
 
 	.qtip-default .qtip-titlebar{
-		background-color: #FFEF93;
+        background-color:#222;
+        background-color:rgba(#222, .6);
 	}
 
 	.qtip-default .qtip-icon{
@@ -110,3 +113,12 @@
 		border-color: #AAA;
 		color: #111;
 	}
+
+/*Alt tooltip style*/
+.qtip-alt{
+    background-color:#fff;
+    background-color:rgba(#fff,.1);
+    color:$primary;
+    white-space:nowrap;
+    text-decoration:underline;
+}

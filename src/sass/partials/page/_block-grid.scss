@@ -81,28 +81,11 @@
         @include font-size(24px);
     }
 }
-.grid__more{
-    position:absolute;
-    top:50%; left:0;
-    @include px2rem(margin-top, -10px);
-    width:100%;
-    text-align:center;
-    opacity:0;
-    z-index:3;
-}
-.grid__more-text{
-    display:inline-block;
-    @include font-size(12px);
-    text-transform:uppercase;
-    border-bottom:1px solid #fff;
-    color:#fff;
-}
+
 
 /*Grid Blocks Hover*/
 .grid__img,
-.grid__more,
-.grid__wrap:before,
-.grid__more{
+.grid__wrap:before{
     @include transition(opacity 0.7s ease);
 }
 .grid__img{
@@ -121,8 +104,7 @@
             opacity:1;
             @include transform(scale(1.2));
         }
-        .grid__wrap:before,
-        .grid__more{
+        .grid__wrap:before{
             opacity:1;
         }
         .grid__num,

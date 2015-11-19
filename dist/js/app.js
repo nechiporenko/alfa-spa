@@ -51,8 +51,7 @@ jQuery.extend(verge);
 
 // Application Scripts:
 
-// Узнаем размеры окна браузера
-// Узнаем значение скролла страницы
+// Узнаем ширину окна браузера
 // Запускаем моб.меню
 // Десктоп-меню: ховер-эффект при наведении на ссылку
 // Меняем прозрачность десктоп-меню при скролле контента
@@ -60,6 +59,8 @@ jQuery.extend(verge);
 // SEO-block - покажем скрытый текст по клику на ссылку "читать далее"
 // График цикла проектов на Главной
 // Анимация элементов страницы при скролле
+// Счетчики на странице
+// Тултипы
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
@@ -70,23 +71,17 @@ jQuery(document).ready(function ($) {
     var $window = $(window),
         $body = $('body'),
         BREAKPOINT = 768, //брекпоинт медиа-запросов
-        winH = 0,//будем хранить высоту окна браузера
         winW = 0;//будем хранить ширину окна браузера
 
     //
-    // Узнаем размеры окна браузера
+    // Узнаем ширину окна браузера
     //---------------------------------------------------------------------------------------
-    var getWindowHeight = (function () {
-        winH = verge.viewportH(); //будем использовать verge - плагин для медиа-запросов
-        return winH;
-    })();
     var getWindowWidth = (function () {
         winW = verge.viewportW();
         return winW;
     })();
 
     $window.on('resize', function () {//при резайзе окна получим актуальные значения
-        setTimeout(getWindowHeight, 300);
         setTimeout(getWindowWidth, 300);
     });
 
@@ -273,7 +268,9 @@ jQuery(document).ready(function ($) {
     //---------------------------------------------------------------------------------------
     $('.seo').one('click', '.js-seo', function (e) {
         e.preventDefault();
-        $(this).parents('.seo').find('.g-hidden').removeClass('g-hidden');
+        var target = $(this).attr('href');
+        $(target).removeClass('g-hidden');
+        $(this).fadeOut();
     });
 
 
@@ -378,12 +375,39 @@ jQuery(document).ready(function ($) {
             target: 'mouse',
             adjust: {
                 x: 15,
-                y:15,
+                y: 15,
                 resize: true
             }
+        },
+        show: {
+            delay: 600
+        },
+        hide: {
+            event: 'click mouseleave'
         }
     });
-
+    $('[data-qtip-alt]').qtip({
+        content: {
+            attr: 'data-qtip-alt'
+        },
+        position: {
+            target: 'mouse',
+            adjust: {
+                x: 15,
+                y: 15,
+                resize: true
+            }
+        },
+        show: {
+            delay: 600
+        },
+        hide: {
+            event: 'click mouseleave'
+        },
+        style: {
+            classes: 'qtip-alt'
+        }
+    });
     
 
     //

@@ -83,26 +83,10 @@
         display:block;
     }
 }
-.p-grid__more{
-    position:absolute;
-    @include px2rem(bottom, 44px);
-    left:0;
-    @include px2rem(margin-top, -10px);
-    width:100%;
-    text-align:center;
-    z-index:3;
-}
-.p-grid__more-text{
-    display:inline-block;
-    @include font-size(12px);
-    text-transform:uppercase;
-    border-bottom:2px solid $primary;
-    color:$primary;
-}
+
 
 /*Random Grid blocks hover*/
-.p-grid__content,
-.p-grid__more{
+.p-grid__content{
     @include transition(opacity .7s ease);
     @include media($desktop){
         opacity:.3;
@@ -113,8 +97,7 @@
     &:hover,
     &:active{
         outline:0;
-        .p-grid__content,
-        .p-grid__more{
+        .p-grid__content{
             opacity:1;
         }
     }
