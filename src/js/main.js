@@ -5,6 +5,7 @@
 // Десктоп-меню: ховер-эффект при наведении на ссылку
 // Меняем прозрачность десктоп-меню при скролле контента
 // Слайдер логотипов партнеров
+// Слайдер цитат
 // SEO-block - покажем скрытый текст по клику на ссылку "читать далее"
 // График цикла проектов на Главной
 // Анимация элементов страницы при скролле
@@ -213,6 +214,69 @@ jQuery(document).ready(function ($) {
     };
 
     //
+    // Слайдер работ портфолио
+    //---------------------------------------------------------------------------------------
+    function initPortfolioSlider() {
+        $('.js-p-slider').find('.captions-list__link:first').addClass('active');
+
+        var $left = $('.p-slider__arrow--left'),
+            $right = $('.p-slider__arrow--right'),
+            $list=$('.captions-list li'),
+            $pager = $list.find('a'),
+            $slider = $('.p-slider__list').bxSlider({
+            auto: false,
+            mode:'fade',
+            infiniteLoop: false,
+            pager: false,
+            nextSelector: $right,
+            prevSelector: $left,
+            nextText: '',
+            prevText: '',
+            hideControlOnEnd:true,
+            onSlideBefore: function ($slideElement, oldIndex, newIndex) {
+                $pager.removeClass('active');
+                $list.eq(newIndex).find('a').addClass('active');
+            }
+        });
+
+        $('.js-p-slider').on('click', '.captions-list__link', function (e) {
+            e.preventDefault();
+            var $el = $(this);
+            if ($el.hasClass('active')) {
+                return false;
+            } else {
+                var index = $el.parent('li').index();
+                $slider.goToSlide(index);
+            }
+        });
+    }
+
+    if ($('.js-p-slider').length) { initPortfolioSlider(); }
+
+    //
+    // Слайдер цитат
+    //---------------------------------------------------------------------------------------
+    function initQuotesSlider() {
+        var $left = $('.q-slider__arrow--left'),
+            $right = $('.q-slider__arrow--right'),
+            $slider = $('.q-slider__list').bxSlider({
+                auto: false,
+                infiniteLoop: false,
+                pager: false,
+                nextSelector: $right,
+                prevSelector: $left,
+                nextText: '',
+                prevText: '',
+                hideControlOnEnd: true,
+                adaptiveHeight: true
+            });
+    }
+    if ($('.js-q-slider').length) {
+        initQuotesSlider();
+    }
+
+
+    //
     // SEO-block - покажем скрытый текст по клику на ссылку "читать далее"
     //---------------------------------------------------------------------------------------
     $('.seo').one('click', '.js-seo', function (e) {
@@ -316,47 +380,65 @@ jQuery(document).ready(function ($) {
     //
     // Тултипы
     //---------------------------------------------------------------------------------------
-    $('[data-qtip]').qtip({
-        content: {
-            attr: 'data-qtip'
+    var initTooltips = (function () {
+        var setting1 = {
+            position: {
+                target: 'mouse',
+                container: $('#page'),
+                adjust: {
+                    x: 15,
+                    y: 15,
+                    resize: true
+                }
+            },
+            show: {
+                delay: 600
+            },
+            hide: {
+                event: 'click mouseleave'
+            },
         },
-        position: {
-            target: 'mouse',
-            adjust: {
-                x: 15,
-                y: 15,
-                resize: true
-            }
+
+        setting2 = {
+            position: {
+                target: 'mouse',
+                container: $('#page'),
+                adjust: {
+                    x: 15,
+                    y: 15,
+                    resize: true
+                }
+            },
+            show: {
+                delay: 600
+            },
+            hide: {
+                event: 'click mouseleave'
+            },
         },
-        show: {
-            delay: 600
+        content1 = {
+            content: {
+                attr: 'data-qtip'
+            },
         },
-        hide: {
-            event: 'click mouseleave'
-        }
-    });
-    $('[data-qtip-alt]').qtip({
-        content: {
-            attr: 'data-qtip-alt'
+        content2 = {
+            content: {
+                attr: 'data-qtip-alt'
+            },
         },
-        position: {
-            target: 'mouse',
-            adjust: {
-                x: 15,
-                y: 15,
-                resize: true
-            }
-        },
-        show: {
-            delay: 600
-        },
-        hide: {
-            event: 'click mouseleave'
-        },
-        style: {
-            classes: 'qtip-alt'
-        }
-    });
+        styling2 = {
+            style: {
+                classes: 'qtip-alt'
+            },
+        };
+        
+
+        $('[data-qtip]').qtip($.extend(setting1, content1));
+        $('[data-qtip-alt]').qtip($.extend(setting2, content2, styling2));
+
+    })();
+    
+    
     
 
     //
