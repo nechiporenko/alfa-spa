@@ -16,13 +16,6 @@
         @include px2rem(height, 504px);
     }
 }
-.p-slider__img{
-    @extend .g-full-width;
-    display:none;
-    @include media($desktop){
-        display:block;
-    }
-}
 
 .p-slider__desktop{
     @include px2rem(height, 504px);
