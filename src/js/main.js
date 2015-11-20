@@ -268,7 +268,7 @@ jQuery(document).ready(function ($) {
                 nextText: '',
                 prevText: '',
                 hideControlOnEnd: true,
-                adaptiveHeight: true
+                adaptiveHeight: false
             });
     }
     if ($('.js-q-slider').length) {
@@ -350,10 +350,10 @@ jQuery(document).ready(function ($) {
     // Счетчики на странице
     //---------------------------------------------------------------------------------------
     function initCounters() {
-        $('.p-counter__item').each(function () {
+        $('.p-counter').each(function () {
             var $el = $(this);
-            if (verge.inY($el) && $el.not('.animated')) {
-                $el.addClass('animated').find('.p-counter__num').each(function () {
+            if (verge.inY($el) && $el.not('.started')) {
+                $el.addClass('started').find('.p-counter__num').each(function () {
                     $(this).prop('Counter', 0).animate({
                         Counter: $(this).text()
                     }, {
@@ -365,10 +365,10 @@ jQuery(document).ready(function ($) {
                     });
                 });
             }
-            if (!$('.p-counter__item').not('.animated').length) {
+            if (!$('.p-counter').not('.started').length) {
                 $window.unbind('scroll', initCounters);
             }
-        })
+        });
     }
 
     if ($('.p-counter__item').length) {
