@@ -7,10 +7,9 @@
     position:relative;
     z-index:1000;
     box-sizing:border-box;
-    @include transition-property(opacity);
-    @include transition-duration(.15s);
+    @include transition-property(background-color);
+    @include transition-duration(.3s);
     @include transition-timing-function(ease);
-    @include backface-visibility(hidden);
 
 
     @media(min-width:$menu-breakpoint){
@@ -18,17 +17,17 @@
     }
 }
 
-.d-menu__wrap{//фиксим дергание на маленьких разрешениях на главной странице
+.d-menu__wrap{//убираем в моб.версии
     display:none;
     @media(min-width:$menu-breakpoint){
         display:block;
     }
 }
 
-.scrolled .d-menu{//будем уменьшать прозрачность фона десктоп-меню при скролле контента
-    opacity:0.96;
+.scrolled .d-menu{//будем уменьшать прозрачность фона десктоп-меню при скролле контента. Не используем opacity - переход происходит "скачками"
+    background-color:rgba($bg-alt, .9);
     &:hover{
-        opacity:1; //и делать непрозрачным при наведении
+        background-color:$bg-alt;
     }
 }
 
@@ -90,7 +89,7 @@
     text-decoration:none;
     white-space:nowrap;
     color:$text-color;
-    @include transition(opacity .15s ease);
+    @include transition(opacity .3s ease);
 
     &:hover,
     &:active{

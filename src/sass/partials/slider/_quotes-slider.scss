@@ -11,22 +11,16 @@
     @extend .p-slider__arrow;
 }
 .q-slider__arrow--left{
-    @include px2rem(left, 11px);
+    @extend .p-slider__arrow--left;
     .bx-prev{
         background-image:url(../img/arrow-slider-left-dark.svg);
-    }
-    @include media($large){
-        @include px2rem(left, -90px);
-    }
+    }    
 }
 .q-slider__arrow--right{
-    @include px2rem(right, 11px);
+    @extend .p-slider__arrow--right;
     .bx-next{
         background-image:url(../img/arrow-slider-right-dark.svg);
-    }
-    @include media($large){
-        @include px2rem(right, -90px);
-    }
+    }    
 }
 
 .no-svg{

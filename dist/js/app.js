@@ -137,7 +137,9 @@ jQuery(document).ready(function ($) {
         var $menu = $('.menu'),
             $link = $menu.find('a');
         $link.hover(function () {
-            $menu.addClass('hover');
+            if (!$(this).hasClass('menu__link--current')) {
+                $menu.addClass('hover');
+            }
         }, function () {
             $menu.removeClass('hover');
         });
@@ -277,13 +279,11 @@ jQuery(document).ready(function ($) {
             $slider = $('.p-slider__list').bxSlider({
             auto: false,
             mode:'fade',
-            infiniteLoop: false,
             pager: false,
             nextSelector: $right,
             prevSelector: $left,
             nextText: '',
             prevText: '',
-            hideControlOnEnd:true,
             onSlideBefore: function ($slideElement, oldIndex, newIndex) {
                 $pager.removeClass('active');
                 $list.eq(newIndex).find('a').addClass('active');
@@ -312,14 +312,11 @@ jQuery(document).ready(function ($) {
             $right = $('.q-slider__arrow--right'),
             $slider = $('.q-slider__list').bxSlider({
                 auto: false,
-                infiniteLoop: false,
                 pager: false,
                 nextSelector: $right,
                 prevSelector: $left,
                 nextText: '',
-                prevText: '',
-                hideControlOnEnd: true,
-                adaptiveHeight: false
+                prevText: ''
             });
     }
     if ($('.js-q-slider').length) {
