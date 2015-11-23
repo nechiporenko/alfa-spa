@@ -1,0 +1,31 @@
+﻿@import "../../modules/_base.scss";
+/*Portfolio Page - Inner Grid*/
+.folio-grid{
+    list-style-type:none;
+    @include px2rem(margin, $project-line-height -11px);
+    padding:0;
+    @extend .g-clearfix;
+}
+
+.folio-grid__item{
+    @extend .grid__item;
+}
+.folio-grid__link{
+    @extend .grid__link;
+}
+.folio-grid__img{
+    @extend .g-img-centered;
+}
+
+
+
+
+/*Portfolio Loader*/
+.p-slider{
+    #loader{
+        position:fixed;
+        top:50%;
+        left:50%;
+        margin:-16px 0 0 -16px;
+    }
+}

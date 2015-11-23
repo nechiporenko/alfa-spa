@@ -2,7 +2,7 @@
 /*Portfolio Slider*/
 .p-slider{
     @include px2rem(margin-bottom, $project-line-height);
-    background:$bg-alt;
+    //background:$bg-alt;
     position:relative;
 }
 .p-slider__list{
@@ -156,3 +156,4 @@
         @include px2rem(padding, 18px 0);
     }
 }
+
