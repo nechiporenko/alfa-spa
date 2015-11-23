@@ -2,15 +2,16 @@
 
 
 @import "page/_page-section.scss";
-@import "page/_feature.scss"; //page text blocks
-@import "page/_step.scss";  //page text blocks
-@import "page/_counter.scss";
-@import "page/_block-grid.scss"; //page info grid-blocks
-@import "page/_random-grid.scss"; //page news grid
-@import "page/graph/_graph.scss"; //homepage diagramm
+@import "page/_feature.scss"; //блоки услуг на главной странице
+@import "page/_step.scss";  //блоки услуг на главной странице (под диаграммой)
+@import "page/_counter.scss";//счетчики
+@import "page/_block-grid.scss"; //блоки "Почему Мы" на главной
+@import "page/_random-grid.scss"; //блоки новостей
+@import "page/graph/_graph.scss"; //диаграмма на главной странице
+@import "page/_p-filter.scss"; //фильтры новостей (категории)
 
 
 
-@import "page/_scroll-up.scss";
-@import "page/_seo-block.scss";
+@import "page/_scroll-up.scss";//кнопка скролла страницы
+@import "page/_seo-block.scss";//сео-блок страницы
 

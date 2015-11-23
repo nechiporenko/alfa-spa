@@ -12,10 +12,15 @@
 
 
 #page.fixed-d-menu{
-    @include px2rem(padding-top, 90px);
+    @include px2rem(padding-top, 36px);
+    @media (min-width:$menu-breakpoint){
+        @include px2rem(padding-top, 90px);
+    }
+
     .header{
         position:fixed;
         top:0; left:0;
+        z-index:1000;
     }
 }
 

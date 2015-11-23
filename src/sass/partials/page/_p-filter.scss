@@ -1,0 +1,42 @@
+﻿@import "../../modules/_base.scss";
+/*Page Filters (Categories)*/
+.p-filter{
+    @extend .g-clearlist;
+    font-size:0;
+}
+.p-filter__item{
+    display:inline-block;
+    @include px2rem(margin, 9px 20px 9px 0);
+    @include font-size(14px);
+
+    &:last-child{
+        margin-right:0;
+    }
+}
+.p-filter__link{
+    display:inline-block;
+    @include px2rem(padding, 0 20px);
+    @include px2rem(height, 36px);
+    @include px2rem(line-height, 38px);
+    border:1px solid transparent;
+    box-sizing:border-box;
+    position:relative;
+    white-space:nowrap;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:$text-color;
+
+    &:hover,
+    &:active{
+        border-color:$primary;
+        color:$primary;
+    }
+}
+.p-filter__link--current{
+    @include px2rem(padding-right, 40px);
+    color:$primary;
+    border-color:$primary;
+    background-image:url(../img/cancel.png);
+    background-position: right 10px center;
+    background-repeat:no-repeat;
+}

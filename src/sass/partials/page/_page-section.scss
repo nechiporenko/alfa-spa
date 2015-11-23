@@ -10,6 +10,11 @@
 .p-section--alt{
     background:$bg-alt;
 }
+
+.p-section--thin{
+    @include px2rem(padding, 27px 0);
+}
+
 .p-section__title{
     @include px2rem(margin-bottom, 36px);
     @include font-size(12px);
@@ -44,5 +49,18 @@
         @include media($tablet){
             @include px2rem(padding, 84px 0 48px);
         }
+    }
+}
+
+/*Page Section News*/
+.p-section--news{
+    @extend .p-section--alt;
+    @extend .p-section--thin;
+    position:relative;
+
+    #loader{
+        bottom:10px;
+        left:50%;
+        margin-left:-16px;
     }
 }

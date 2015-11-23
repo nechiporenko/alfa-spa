@@ -17,6 +17,10 @@
         color:$primary;
     }
 }
+.f-menu__link--current{
+    color:$primary;
+    cursor:default;
+}
 
 /*Footer Phones*/
 .c-menu{

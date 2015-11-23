@@ -62,6 +62,7 @@ jQuery.extend(verge);
 // Анимация элементов страницы при скролле
 // Счетчики на странице
 // Тултипы
+// Дозагрузка новостей при скролле
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
@@ -488,6 +489,61 @@ jQuery(document).ready(function ($) {
     
     
     
+    //
+    // Дозагрузка новостей при скролле
+    //---------------------------------------------------------------------------------------
+    function loadMoreNews() {
+        var $list = $('.js-news'), //список новостей
+            $loader = $('#loader'), //иконка лоадера
+            total = $list.data('total'), //через дата-атрибут задаем максимальное кол-во новостей на странице
+            bottom; //запишем высоту блока новостей
+        
+        checkTotal();
+
+        function getListHeight() {//узнаем высоту блока новостей, чтобы определить в какой точке подгружать контент
+            bottom = $list.position().top + $list.outerHeight(true);
+            return bottom;
+        }
+
+        $window.on('resize', function () {//пересчитаем размеры блока при ресайзе окна
+            setTimeout(getListHeight, 200);
+        });
+
+        function checkTotal() {//проверяем сколько новостей загружено
+            var count = $list.find('li').length;
+            console.log(count);
+            if (count < total) {//если загружено меньше чем указано, включаем отслеживание скролла
+                getListHeight();
+                $window.bind('scroll', scrollToEnd);
+            }
+        }
+
+        function scrollToEnd() {//когда докрутили до нижней точки - догружаем контент и отключаем отслеживание
+            var scrollPos = bottom - verge.scrollY() - verge.viewportH();
+            if (scrollPos <= 0) {
+                $window.unbind('scroll', scrollToEnd);
+                $loader.fadeIn();
+                $list.after('<ul class="g-hidden" id="hidden"></ul>');
+                var $hidden = $('#hidden');
+                $hidden.load('ajax/_news_content.html li', function () {
+                    $hidden.find('li').each(function () {
+                        var $item = $(this);
+                        $list.append($item);
+                    });
+                    $hidden.remove();
+                    $loader.fadeOut();
+                    checkTotal();//новая проверка кол-ва загруженных новостей
+                });
+            }
+        }
+
+
+    }
+
+    if ($('.js-news').length) {
+        loadMoreNews();
+    }
+
 
     //
     // Сообщения об отправке формы
