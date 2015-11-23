@@ -36,7 +36,11 @@
     @include px2rem(padding-right, 40px);
     color:$primary;
     border-color:$primary;
-    background-image:url(../img/cancel.png);
+    background-image:url(../img/cancel.svg);
     background-position: right 10px center;
     background-repeat:no-repeat;
+}
+
+.n0-svg .p-filter__link--current{
+    background-image:url(../img/cancel.png);
 }
