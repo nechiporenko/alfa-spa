@@ -1,6 +1,7 @@
 // Application Scripts:
 
 // Узнаем ширину окна браузера
+// Image Lazy Load - будем подгружать картинки при скролле
 // Запускаем моб.меню
 // Десктоп-меню: ховер-эффект при наведении на ссылку
 // Меняем прозрачность десктоп-меню при скролле контента
@@ -35,6 +36,11 @@ jQuery(document).ready(function ($) {
     $window.on('resize', function () {//при резайзе окна получим актуальные значения
         setTimeout(getWindowWidth, 300);
     });
+
+    //
+    // Image Lazy Load - будем подгружать картинки при скролле
+    //---------------------------------------------------------------------------------------
+    $('img[data-src]').unveil();
 
     //
     // Запускаем моб.меню
@@ -460,7 +466,6 @@ jQuery(document).ready(function ($) {
 
         function checkTotal() {//проверяем сколько новостей загружено
             var count = $list.find('li').length;
-            console.log(count);
             if (count < total) {//если загружено меньше чем указано, включаем отслеживание скролла
                 getListHeight();
                 $window.bind('scroll', scrollToEnd);
@@ -479,6 +484,7 @@ jQuery(document).ready(function ($) {
                         var $item = $(this);
                         $list.append($item);
                     });
+                    $list.find('img[data-src]').unveil();//натравим на дозагруженный контент плагин подгрузки картинок
                     $hidden.remove();
                     $loader.fadeOut();
                     checkTotal();//новая проверка кол-ва загруженных новостей
@@ -492,6 +498,8 @@ jQuery(document).ready(function ($) {
     if ($('.js-news').length) {
         loadMoreNews();
     }
+
+    
 
 
     //
