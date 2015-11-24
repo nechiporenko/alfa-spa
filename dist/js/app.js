@@ -559,6 +559,80 @@ jQuery(document).ready(function ($) {
     }
 
     
+    //
+    // Портфолио
+    //---------------------------------------------------------------------------------------
+    function initPortfolioList() {
+        var $loader = $('#loader'),
+            flag = false; //будем отслеживать, загружается контент или нет
+
+        $('.js-folio-list').on('click', '.p-slider__link', function (e) {
+            e.preventDefault();
+            if (flag) {
+                return false; //кликаем в момент загрузки контента - игнорируем
+            } else {
+                var $el = $(this),
+                $target = $el.next('.g-container');
+                if ($el.hasClass('active')) {//складываем "гармошку" - прячем сетку портфолио
+                    $el.removeClass('active');
+                    $target.fadeOut();
+                } else {
+                    if ($target.hasClass('loaded')) {//сетка портфолио уже загружена - просто покажем ее
+                        $el.addClass('active');
+                        $target.fadeIn();
+                    } else {//сетка не загружена - загружаем контент
+                        loadPortfolioGrid($el, $target);
+                    }
+                }
+            }
+        });
+
+        function loadPortfolioGrid(link, el) {
+            flag = true;
+            $loader.fadeIn();//показали иконку лоадера
+            el.load('ajax/_portfolio_content.html ul', function () {//подгрузили контент
+                el.addClass('loaded').removeClass('g-hidden');//после загрузки, показали блоки
+                link.addClass('active');
+                initPortfolioGrid(el);//подключили функционал
+                var topOffset = 54; //36 + 18
+                if (winW >= BREAKPOINT) {
+                    topOffset = 108; //90 + 18
+                }
+                $('html, body').animate({//после загрузки, промотаем к началу новых блоков
+                    scrollTop: el.offset().top - topOffset
+                }, 800);
+                $loader.hide();//скрыли лоадер
+                flag = false; //изменили статус
+            });
+        }
+
+        function initPortfolioGrid(el) {
+            var $grid = el.find('.js-folio').masonry({//запустили Masonry
+                itemSelector: '.folio-grid__item'
+            });
+
+            el.find('img[data-src]').unveil();//натравим на дозагруженный контент плагин подгрузки картинок
+
+            el.on('click', '.folio-grid__wrap', function (e) {//по клику покажем / спрячем блоки с доп.информацией
+                e.preventDefault();
+                var $el = $(this),
+                    $target = $el.next('.folio-grid__link');
+                if ($el.hasClass('active')) {
+                    $el.removeClass('active');
+                    $target.removeClass('active');
+                } else {
+                    $el.addClass('active');
+                    $target.addClass('active');
+                }
+                $grid.masonry('layout');//перестроили сетку
+            });
+        }
+    }
+
+    if ($('.js-folio-list').length) {
+        initPortfolioList();
+    }
+
 
 
     //

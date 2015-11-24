@@ -10,29 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script src="js/vendor/modernizr.js"></script>
     <style>
-        .js #preloader {
-            position: fixed;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            background: #fbfafa;
-            z-index: 4000;
-        }
-
-        #preloader .loader {
-            width: 32px;
-            height: 32px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            background: url('img/loader.gif') 50% 50% no-repeat;
-            margin: -16px 0 0 -16px;
-        }
-
-        .no-js #preloader {
-            display: none;
-        }
+        .js #preloader{position:fixed;left:0;top:0;right:0;bottom:0;background:#fbfafa;z-index:4000}#preloader .loader{width:32px;height:32px;position:absolute;left:50%;top:50%;background:url(img/loader.gif) 50% 50% no-repeat;margin:-16px 0 0 -16px}.no-js #preloader{display:none}
     </style>
     <link rel="stylesheet" href="css/app.css">       
     <!--[if lt IE 9]>
@@ -95,61 +73,41 @@
         </header>
         <main id="content">
             <div class="p-slider">
-                <ul class="p-slider__list">
+                <ul class="p-slider__list js-folio-list">
                     <li>
                         <a href="#" class="p-slider__link" data-qtip="Салоны красоты: посмотреть">
                             <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img01.jpg)"></div>
                             <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img01-sm.jpg)"></div>
                         </a>
-                        <div class="g-container">
-                            <ul class="folio-grid">
-                                <li class="folio-grid__item">
-                                    <a href="#" class="folio-grid__link">
-                                        <img src="img/grid/news-grid01.jpg" class="folio-grid__img" alt="Portfolio Picture" />
-                                    </a>
-                                    <div class="folio-grid__caption">
-                                        <div class="folio-grid__title">Салон красоты «Lazuri»</div>
-                                        <p class="folio-grid__text">
-                                            <span class="g-brand-color">адрес:</span> Украина, город Киев, ул.Урловская, 23б 
-                                        </p>
-                                        <p class="folio-grid__text">
-                                            <span class="g-brand-color">тел: </span>+38 (044) 337 3993
-                                            <br />
-                                            <span class="g-brand-color">моб: </span>+38 (044) 337 3993
-                                         </p>
-                                        <p class="folio-grid__text">
-                                            <span class="g-brand-color">email: </span><a href="mailto:salon@lazuri.com.ua">salon@lazuri.com.ua</a>
-                                            <br />
-                                            <span class="g-brand-color">сайт: </span><a href="#" rel="nofollow" target="_blank">lazuri.com.ua</a>
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <div class="g-container g-hidden"></div>
                     </li>
                     <li>
                         <a href="#" class="p-slider__link" data-qtip="Отели: посмотреть">
                             <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img02.jpg)"></div>
                             <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img02-sm.jpg)"></div>
                         </a>
+                        <div class="g-container g-hidden"></div>
                     </li>
                     <li>
                         <a href="#" class="p-slider__link" data-qtip="СПА: посмотреть">
                             <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img03.jpg)"></div>
                             <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img03-sm.jpg)"></div>
                         </a>
+                        <div class="g-container g-hidden"></div>
                     </li>
                     <li>
                         <a href="#" class="p-slider__link" data-qtip="Клиники: посмотреть">
                             <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img04.jpg)"></div>
                             <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img04-sm.jpg)"></div>
                         </a>
+                        <div class="g-container g-hidden"></div>
                     </li>
                     <li>
                         <a href="#" class="p-slider__link" data-qtip="Санатории: посмотреть">
                             <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img05.jpg)"></div>
                             <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img05-sm.jpg)"></div>
                         </a>
+                        <div class="g-container g-hidden"></div>
                     </li>
                 </ul>
                 <div id="loader"></div>
@@ -393,16 +351,15 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+    <script>
+        window.Masonry || document.write('<script src="js/vendor/masonry.pkgd.min.js"><\/script>')
+    </script>
+
     <script src="js/app.min.js"></script>
     <script>
-        $(window).on('load', function () {
-            var $preloader = $('#preloader'),
-                $spinner = $preloader.find('.loader');
-            $spinner.fadeOut();
-            $preloader.delay(350).fadeOut('slow', function () {
-                $preloader.remove();
-            });
-        });
+        $(window).on("load", function () { var o = $("#preloader"), d = o.find(".loader"); d.fadeOut(), o.delay(350).fadeOut("slow", function () { o.remove() }) });
     </script>
 
 </body>
