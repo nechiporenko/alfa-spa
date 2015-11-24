@@ -72,9 +72,11 @@ jQuery.extend(verge);
 // Счетчики на странице
 // Тултипы
 // Дозагрузка новостей при скролле
+// Портфолио
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
+// Ф-ция скролла к началу элеметна
 // Модальное окно
 // Если браузер не знает о svg-картинках
 jQuery(document).ready(function ($) {
@@ -442,8 +444,8 @@ jQuery(document).ready(function ($) {
 
     //
     // Тултипы
-    //---------------------------------------------------------------------------------------
-    var initTooltips = (function () {
+    //---------------------------------------------------------------------------------------   
+    initTooltips = function () {
         var setting1 = {
             position: {
                 target: 'mouse',
@@ -494,14 +496,11 @@ jQuery(document).ready(function ($) {
                 classes: 'qtip-alt'
             },
         };
-        
 
         $('[data-qtip]').qtip($.extend(setting1, content1));
         $('[data-qtip-alt]').qtip($.extend(setting2, content2, styling2));
-
-    })();
-    
-    
+    }
+    initTooltips();
     
     //
     // Дозагрузка новостей при скролле
@@ -564,12 +563,19 @@ jQuery(document).ready(function ($) {
     //---------------------------------------------------------------------------------------
     function initPortfolioList() {
         var $loader = $('#loader'),
-            flag = false; //будем отслеживать, загружается контент или нет
+            flag = false; //будем отслеживать, загружается в данный момент контент или нет
+
+        $('.js-folio-list').find('.p-slider__link').each(function () {//если происходит переход на страницу по клику в слайдере на Главной
+            if ($(this).hasClass('active')) {
+                var $target = $(this).next('.g-container');
+                smoothScroll($target); //промотаем к активным блокам
+            }
+        });
 
         $('.js-folio-list').on('click', '.p-slider__link', function (e) {
             e.preventDefault();
             if (flag) {
-                return false; //кликаем в момент загрузки контента - игнорируем
+                return false; //кликаем в момент загрузки контента - игнорируем клик
             } else {
                 var $el = $(this),
                 $target = $el.next('.g-container');
@@ -594,13 +600,7 @@ jQuery(document).ready(function ($) {
                 el.addClass('loaded').removeClass('g-hidden');//после загрузки, показали блоки
                 link.addClass('active');
                 initPortfolioGrid(el);//подключили функционал
-                var topOffset = 54; //36 + 18
-                if (winW >= BREAKPOINT) {
-                    topOffset = 108; //90 + 18
-                }
-                $('html, body').animate({//после загрузки, промотаем к началу новых блоков
-                    scrollTop: el.offset().top - topOffset
-                }, 800);
+                smoothScroll(el); //прокрутили вверх к новым блокам
                 $loader.hide();//скрыли лоадер
                 flag = false; //изменили статус
             });
@@ -612,6 +612,10 @@ jQuery(document).ready(function ($) {
             });
 
             el.find('img[data-src]').unveil();//натравим на дозагруженный контент плагин подгрузки картинок
+
+            $('[data-qtip]').qtip('destroy', true);//перезапускаем тултипы
+            $('[data-qtip-alt]').qtip('destroy', true);
+            initTooltips();
 
             el.on('click', '.folio-grid__wrap', function (e) {//по клику покажем / спрячем блоки с доп.информацией
                 e.preventDefault();
@@ -667,6 +671,19 @@ jQuery(document).ready(function ($) {
             return false;
         });
     }());
+
+    //
+    // Ф-ция скролла к началу элеметна
+    //---------------------------------------------------------------------------------------
+    function smoothScroll(el) {
+        var topOffset = 54; //36 + 18 (36 - высота хидера в моб.версии, 18 - маржин)
+        if (winW >= BREAKPOINT) {
+            topOffset = 108; //90 + 18
+        }
+        $('html, body').animate({//после загрузки, промотаем к началу новых блоков
+            scrollTop: el.offset().top - topOffset
+        }, 800);
+    }
 
 
     //
