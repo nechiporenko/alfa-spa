@@ -54,21 +54,11 @@
 
 .folio-grid__link{
     position:relative;
+    @include px2rem(padding-top, 22px); //чтобы не ломать сетку при открытом блоке
     background:$bg-alt;
     display:none;
     text-decoration:none;
     color:$text-color;
-
-    &:before{
-        content:'';
-        display:block;
-        @include px2rem(height, 22px);
-        background:$bg-alt;
-        position:absolute;
-        @include px2rem(bottom, -22px);
-        left:0;
-        width:100%;
-    }
 
     &:after{
         content:'';
@@ -87,7 +77,8 @@
 
 .folio-grid__inner{
     position:absolute;
-    top:36px; right:18px; bottom:0; left:50px;
+    @include px2rem(top, 22px);
+    right:18px; bottom:0; left:50px;
     @include font-size(12px);
     overflow:hidden;
 
