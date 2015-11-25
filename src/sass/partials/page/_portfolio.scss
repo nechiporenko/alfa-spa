@@ -112,3 +112,125 @@
         margin:-16px 0 0 -16px;
     }
 }
+
+/*Single Portfolio*/
+.folio-post{
+    @include px2rem(margin, 0 auto 2*$project-line-height);
+    background:$bg-alt;
+    @extend .g-clearfix;
+    position:relative;
+
+    @include media($mobile){
+        @include px2rem(width, 300px);
+    }
+
+    @include media($tablet){
+        width:100%;
+        @include px2rem(height, 300px);
+    }
+}
+.folio-post__thumb{
+    display:block;
+    position:relative;
+    margin:0; padding:0;
+
+    &:before,
+    &:after{
+        content:'';
+        display:block;
+    }
+
+    &:before{
+        position:absolute;
+        top:0; left:0; right:0; bottom:0;
+        background:rgba(#000, .4);
+        z-index:1;
+        @include transition(opacity .7s ease);
+        opacity:0;
+    }
+
+    &:after{
+        padding-top:100%;
+    }
+
+    &:hover,
+    &:active{
+        &:before{
+            opacity:1;
+        }
+    }
+
+    @include media($tablet){
+        @include px2rem(width, 300px);
+        float:left;
+    }
+}
+
+.folio-post__img{
+    @extend .g-img-centered;
+}
+
+.folio-post__content{
+    @include px2rem(padding, 36px 18px 18px 18px );
+    @include font-size(12px);
+    box-sizing:border-box;
+    overflow:hidden;
+    position:relative;
+
+    &:after{
+        @extend .folio-grid__inner:after;
+    }
+
+    @include media($tablet){
+        float:left;
+        @include px2rem(padding-left, 50px);
+        @include px2rem(height, 300px);
+    }
+}
+.folio-post__title{
+    @extend .folio-grid__title;
+}
+.folio-post__description{
+    h1, h2, h3, h4{
+        @extend .folio-grid__title;
+    }
+}
+/*Single portfolio arrows*/
+.folio-post__arrow{
+    position:absolute;
+    text-decoration:none;
+    top:50%;
+    @include px2rem(margin-top, -10px);
+    display:none;
+
+    @include media($desktop){
+        display:inline-block;
+    }
+}
+.folio-post__arrow--prev{
+    @include px2rem(left, -25px);
+    @include media($large){
+        @include px2rem(left, -80px);
+    }
+}
+.folio-post__arrow--next{
+    @include px2rem(right, -25px);
+    @include media($large){
+        @include px2rem(right, -80px);
+    }
+}
+
+.folio-post__mobnav{
+    @include px2rem(margin-bottom, 2*$project-line-height);
+    text-align:center;
+
+    .folio-post__arrow{
+        position:static;
+        display:inline-block;
+        @include px2rem(margin, 0 10px);
+    }
+
+    @include media($desktop){
+        display:none;
+    }
+}

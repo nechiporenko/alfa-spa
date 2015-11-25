@@ -568,7 +568,7 @@ jQuery(document).ready(function ($) {
         $('.js-folio-list').find('.p-slider__link').each(function () {//если происходит переход на страницу по клику в слайдере на Главной
             if ($(this).hasClass('active')) {
                 var $target = $(this).next('.g-container');
-                smoothScroll($target); //промотаем к активным блокам
+                smoothScroll($target, 18); //промотаем к активным блокам (18 - верхний маржин)
             }
         });
 
@@ -600,7 +600,7 @@ jQuery(document).ready(function ($) {
                 el.addClass('loaded').removeClass('g-hidden');//после загрузки, показали блоки
                 link.addClass('active');
                 initPortfolioGrid(el);//подключили функционал
-                smoothScroll(el); //прокрутили вверх к новым блокам
+                smoothScroll(el, 18); //прокрутили вверх к новым блокам
                 $loader.hide();//скрыли лоадер
                 flag = false; //изменили статус
             });
@@ -637,6 +637,9 @@ jQuery(document).ready(function ($) {
         initPortfolioList();
     }
 
+    if ($('.js-folio-post').length) {
+        smoothScroll($('.js-folio-post'), 54);
+    }
 
 
     //
@@ -675,10 +678,13 @@ jQuery(document).ready(function ($) {
     //
     // Ф-ция скролла к началу элеметна
     //---------------------------------------------------------------------------------------
-    function smoothScroll(el) {
-        var topOffset = 54; //36 + 18 (36 - высота хидера в моб.версии, 18 - маржин)
+    function smoothScroll(el, offset) {
+        if (!offset) {
+            offset = 0;
+        }
+        var topOffset = 35 + offset; //36 - высота хидера в моб.версии
         if (winW >= BREAKPOINT) {
-            topOffset = 108; //90 + 18
+            topOffset = 90 + offset; //90 - высота хидера на десктопе
         }
         $('html, body').animate({//после загрузки, промотаем к началу новых блоков
             scrollTop: el.offset().top - topOffset
