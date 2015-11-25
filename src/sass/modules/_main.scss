@@ -63,6 +63,29 @@ h1, h2, h3, h4, h5, h6 {
     text-align:center;
 }
 
+.g-title-h1,
+.g-title-h2{
+    display:block;
+    @include px2rem(margin-bottom, $project-line-height);
+    line-height:strip-units($project-line-height/16);
+    font-family:$font-title;
+    text-transform:uppercase;
+}
+
+.g-title-h1{
+    @include font-size(24px);
+}
+.g-title-h2{
+    @include font-size(18px);
+}
+
+.g-subtitle{
+    display:block;
+    @include px2rem(margin-bottom, 2*$project-line-height);
+    @include font-size(14px);
+    color:$primary;
+    text-transform:uppercase;
+}
 
 .g-brand-color{
     color:$primary;
@@ -156,6 +179,11 @@ hr {
     @include px2rem(margin, $project-line-height 0);
     border-width: 0;
     border-top: 1px solid $primary;
+}
+
+.g-spacer{
+    @include px2rem(height, 2*$project-line-height);
+    @extend .g-clearfix;
 }
 
 /* Transitions */

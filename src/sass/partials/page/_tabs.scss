@@ -1,0 +1,26 @@
+﻿@import "../../modules/_base.scss";
+/*Page Tabs*/
+.p-tabs{
+    @extend .g-clearlist;
+    @include px2rem(margin-bottom, 2*$project-line-height);
+    font-size:0;
+}
+.p-tabs__item{
+    @extend .p-filter__item;
+}
+.p-tabs__link{
+    @extend .p-filter__link;
+    @include px2rem(padding, 0 10px);
+
+    @include media($tablet){
+        @include px2rem(padding, 0 20px);
+    }
+}
+
+.p-tabs__link--current{
+    border-color:$primary;
+}
+
+.p-tabs__content{
+    @extend .g-clearfix;
+}

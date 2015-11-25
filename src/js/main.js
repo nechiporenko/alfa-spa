@@ -14,6 +14,7 @@
 // Тултипы
 // Дозагрузка новостей при скролле
 // Портфолио
+// Вкладки на странице
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
@@ -579,7 +580,65 @@ jQuery(document).ready(function ($) {
     }
 
     if ($('.js-folio-post').length) {
-        smoothScroll($('.js-folio-post'), 54);
+        smoothScroll($('.js-folio-post'), 54); //при переходе на страницу работы, промотаем к началу блока
+    }
+
+
+    //
+    // Вкладки на странице
+    //---------------------------------------------------------------------------------------
+    function initTabs() {//покажем вкладку, спрячем остальные
+        var $content = $('.p-tabs__content'),
+            $tabs = $('.js-tabs'),
+            className = 'p-tabs__link--current';
+        $content.not(':first').hide();
+        $tabs.each(function () {
+            var current = $(this).find('.'+className);
+            if (current.length<1) {
+                $(this).find('.p-tabs__link').filter(':first').addClass(className);
+            }
+            current = $(this).find('.'+className).attr('href');
+            $(current).show();
+        });
+        
+        $tabs.on('click', '.p-tabs__link', function (e) {//клик по вкладкам
+            e.preventDefault();
+            var $el = $(this),
+                $list = $el.parents('.js-tabs'),
+                target = $el.attr('href'),
+                tab_current = $list.find('.'+className).attr('href');
+            if ($el.hasClass(className)) {
+                return false;
+            } else {
+                console.log(target, tab_current);
+                $(tab_current).hide();
+                $list.find('.p-tabs__link').removeClass(className);
+                $el.addClass(className);
+                $(target).fadeIn();
+                history.pushState(null, null, window.location.search + $el.attr('href'));
+            }
+        });
+
+        //парсим линк и открываем нужную вкладку при загрузке страницы
+        var wantedTag = window.location.hash;
+        if (wantedTag != "") {           
+            try {
+                var $allTabs =  $tabs.find('a[href^=' + wantedTag + ']').parents('.js-tabs').find('.p-tabs__link');
+                var defaultTab = $allTabs.filter('.'+className).attr('href');
+                $(defaultTab).hide();
+                $allTabs.removeClass(className);
+                $tabs.find('a[href^=' + wantedTag + ']').addClass(className);
+                var $target = $("#" + wantedTag.replace('#', ''));
+                $target.show();//показали
+                smoothScroll($target, 18);//прокрутили к началу контента
+            } catch (e) {
+                // I have no idea what to do here, so I'm leaving this for the maintainer.
+            }
+        }
+    }
+
+    if ($('.js-tabs').length) {
+        initTabs();
     }
 
 

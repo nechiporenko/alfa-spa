@@ -8,7 +8,7 @@
     z-index:1000;
     box-sizing:border-box;
     @include transition-property(background-color);
-    @include transition-duration(.3s);
+    @include transition-duration(.1s);
     @include transition-timing-function(ease);
 
 
@@ -25,7 +25,7 @@
 }
 
 .scrolled .d-menu{//будем уменьшать прозрачность фона десктоп-меню при скролле контента. Не используем opacity - переход происходит "скачками"
-    background-color:rgba($bg-alt, .9);
+    background-color:rgba($bg-alt, .96);
     &:hover{
         background-color:$bg-alt;
     }
