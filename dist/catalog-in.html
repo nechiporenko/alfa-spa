@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="ru"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="ru"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ru">
+ <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script src="js/vendor/modernizr.js"></script>
-    <link rel="stylesheet" href="css/app.css">       
+    <link rel="stylesheet" href="css/app.css">
+    <link href="css/jquery.auto-complete.css" rel="stylesheet" />
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -77,9 +80,6 @@
                         <li class="breadcrumbs__item">
                             Косметика Hydropeptide
                         </li>
-                        <li class="breadcrumbs__item">
-                            Косметика Hydropeptide
-                        </li>
                     </ol>
                 </div><!--/g-container-->
             </div><!--/p-section-->
@@ -91,23 +91,23 @@
                     </div>
                     <div class="c-filter">
                         <label class="c-filter__label">Фильтр №1</label>
-                        <input type="search" class="c-filter__input" placeholder="Начните вводить название" />
+                        <input type="text" class="c-filter__input" placeholder="Начните вводить название" id="search" />
                         <label class="c-filter__label">Фильтр №2</label>
-                        <select class="c-filter__select">
+                        <select class="c-filter__select" name="f01">
                             <option>Название 1</option>
                             <option>Название 2</option>
                             <option>Название 3</option>
                             <option>Название 4</option>
                         </select>
                         <label class="c-filter__label">Фильтр №3</label>
-                        <select class="c-filter__select">
+                        <select class="c-filter__select" name="f02">
                             <option>Название 1</option>
                             <option>Название 2</option>
                             <option>Название 3</option>
                             <option>Название 4</option>
                         </select>
                         <label class="c-filter__label">Фильтр №4</label>
-                        <select class="c-filter__select">
+                        <select class="c-filter__select" name="f03">
                             <option>Название 1</option>
                             <option>Название 2</option>
                             <option>Название 3</option>
@@ -249,5 +249,21 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="js/app.min.js"></script>
+    <script src="js/vendor/jquery.auto-complete.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#search').autoComplete({
+                minChars: 2,
+                source: function (term, suggest) {
+                    term = term.toLowerCase();
+                    var choices = ['Албания', 'Армения', 'Болгария', 'Дания', 'Германия', 'Испания', 'Италия', 'Франция', 'Albania', 'Armenia', 'Bulgaria', 'Denmark', 'Germany', 'Spain', 'Italy', 'France'];
+                    var matches = [];
+                    for (i = 0; i < choices.length; i++)
+                        if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+                    suggest(matches);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

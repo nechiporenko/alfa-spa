@@ -1,0 +1,55 @@
+﻿@import "../../modules/_base.scss";
+/*Custom Select*/
+.custom-select-menu {
+  width:100%;
+  @include px2rem(margin-bottom, 38px);
+  outline: none;
+  position: relative;
+
+  label{
+      display:block;
+      @include px2rem(height, 36px);
+      @include px2rem(line-height, 36px);
+      @include px2rem(padding, 0 10px);
+      border:1px solid $border-color;
+      @include user-select(none);
+      background:#fff;
+      position:relative;
+      color:$primary;
+      font-weight:normal;
+      box-sizing:border-box;
+      overflow:hidden;
+      cursor:pointer;
+      @include font-size(12px);
+      @include transition(border-color .1s ease);
+
+      &.opened,
+      &:hover{
+          border-color:$primary;
+      }
+  }
+
+  ul{
+      width:100%;
+      @extend .g-clearlist;
+      position:absolute;
+      top:100%;
+      left:0;
+      box-sizing:border-box;
+      background:#fff;
+      z-index:5;
+      border-left:1px solid $border-color;
+      border-bottom:1px solid $border-color;
+      border-right:1px solid $border-color;
+  }
+
+  li{
+      @include px2rem(padding, 8px 10px);
+      cursor:pointer;
+
+      &:hover{
+          background-color:$bg-alt;
+          color:$primary;
+      }
+  }
+}
