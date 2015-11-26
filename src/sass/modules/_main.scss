@@ -91,6 +91,19 @@ h1, h2, h3, h4, h5, h6 {
     color:$primary;
 }
 
+.g-brand-text{
+    display:block;
+    @include px2rem(margin-bottom, $project-line-height);
+    @include font-size(14px);
+    color:$primary;
+    text-transform:uppercase;
+    line-height:1.2;
+}
+
+.g-small-text{
+    @include font-size(14px);
+}
+
 b,
 strong{
     font-family:$font-bold;
@@ -182,6 +195,7 @@ hr {
 }
 
 .g-spacer{
+    display:block;
     @include px2rem(height, 2*$project-line-height);
     @extend .g-clearfix;
 }
