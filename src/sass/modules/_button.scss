@@ -2,17 +2,17 @@
 /* Buttons */
 .g-btn{
     display: inline-block;
-    @include px2rem(height, 38px);
-    @include px2rem(padding, 0 30px);
-    color:#fff;
+    @include px2rem(height, 36px);
+    @include px2rem(padding, 0 10px);
+    color:$primary;
     text-align: center;
     @include font-size(14px);
     @include px2rem(line-height, 38px);
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
-    background-color: $primary;
-    border-radius:$border-radius;
+    background-color: transparent;
+    border-radius:0;
     border: 1px solid $primary;
     cursor: pointer;
     box-sizing: border-box;
@@ -20,8 +20,8 @@
     &:hover,
     &:focus,
     &:active{
-        color:#fff;
-        background-color:darken($primary, 10%);
+        color:$text-color;
+        border-color:$text-color;
         outline:0;
     }
 }
