@@ -1,0 +1,31 @@
+﻿@import "../../modules/_base.scss";
+.breadcrumbs{
+    @include px2rem(margin, 18px 0 0 0);
+    padding:0;
+    @include font-size(12px);
+    line-height:1.5;
+    list-style-type:none;
+    text-transform:uppercase;
+    color:$primary;
+}
+.breadcrumbs__item{
+    display:inline-block;
+    position:relative;
+
+    &:after{
+        content:'/';
+    }
+
+    &:last-child{
+        &:after{
+            display:none;
+        }
+    }
+}
+.breadcrumbs__link{
+    color:$text-color;
+    &:hover,
+    &:active{
+        color:$primary;
+    }
+}

@@ -4,14 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Portfolio</title>
+    <title>Catalog</title>
     <meta name="description" content="Page Description">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script src="js/vendor/modernizr.js"></script>
-    <style>
-        .js #preloader{position:fixed;left:0;top:0;right:0;bottom:0;background:#fbfafa;z-index:4000}#preloader .loader{width:32px;height:32px;position:absolute;left:50%;top:50%;background:url(img/loader.gif) 50% 50% no-repeat;margin:-16px 0 0 -16px}.no-js #preloader{display:none}
-    </style>
     <link rel="stylesheet" href="css/app.css">       
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -19,9 +16,6 @@
     <![endif]-->
 </head>
 <body>
-    <div id="preloader">
-        <span class="loader"></span>
-    </div>
     <div id="page" class="fixed-d-menu">
         <header class="header">
             <div class="d-menu">
@@ -53,10 +47,10 @@
                             <a href="press.html" class="menu__link">Пресс-центр</a>
                         </li>
                         <li class="menu__item">
-                            <a href="catalog.html" class="menu__link">Каталог</a>
+                            <a href="catalog.html" class="menu__link menu__link--current">Каталог</a>
                         </li>
                         <li class="menu__item">
-                            <a href="portfolio.html" class="menu__link menu__link--current">Портфолио</a>
+                            <a href="portfolio.html" class="menu__link">Портфолио</a>
                         </li>
                         <li class="menu__item">
                             <a href="design.html" class="menu__link">Проектирование</a>
@@ -72,46 +66,138 @@
             </div><!--/d-menu-->
         </header>
         <main id="content">
-            <div class="p-slider">
-                <ul class="p-slider__list js-folio-list">
-                    <li>
-                        <a href="#" class="p-slider__link" data-qtip="Салоны красоты: посмотреть">
-                            <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img01.jpg)"></div>
-                            <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img01-sm.jpg)"></div>
-                        </a>
-                        <div class="g-container g-hidden"></div>
-                    </li>
-                    <li>
-                        <a href="#" class="p-slider__link" data-qtip="Отели: посмотреть">
-                            <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img02.jpg)"></div>
-                            <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img02-sm.jpg)"></div>
-                        </a>
-                        <div class="g-container g-hidden"></div>
-                    </li>
-                    <li>
-                        <a href="#" class="p-slider__link" data-qtip="СПА: посмотреть">
-                            <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img03.jpg)"></div>
-                            <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img03-sm.jpg)"></div>
-                        </a>
-                        <div class="g-container g-hidden"></div>
-                    </li>
-                    <li>
-                        <a href="#" class="p-slider__link" data-qtip="Клиники: посмотреть">
-                            <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img04.jpg)"></div>
-                            <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img04-sm.jpg)"></div>
-                        </a>
-                        <div class="g-container g-hidden"></div>
-                    </li>
-                    <li>
-                        <a href="#" class="p-slider__link" data-qtip="Санатории: посмотреть">
-                            <div class="p-slider__desktop" style="background-image:url(img/slider/slider-img05.jpg)"></div>
-                            <div class="p-slider__mobile" style="background-image:url(img/slider/slider-img05-sm.jpg)"></div>
-                        </a>
-                        <div class="g-container g-hidden"></div>
-                    </li>
-                </ul>
-                <div class="loader"></div>
-            </div><!--/p-slider-->
+            <div class="p-section">
+                <div class="g-container">
+                    <div class="g-row">
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-01.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Hydropeptide</span>
+                                    <p>Профессиональная Anti-age косметика Hydropeptide</p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand c-brand--center">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-02.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Oxygen</span>
+                                    <p>Oxygen Botanicals<br />
+                                    профессиональная линия</p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand c-brand--last">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-03.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Soskin</span>
+                                    <p>Soskin Institute<br />
+                                    профессиональная линия</p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                    </div><!--/g-row-->
+                    <div class="g-row">
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-01.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Hydropeptide</span>
+                                    <p>Профессиональная Anti-age косметика Hydropeptide</p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand c-brand--center">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-02.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Oxygen</span>
+                                    <p>
+                                        Oxygen Botanicals<br />
+                                        профессиональная линия
+                                    </p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand c-brand--last">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-03.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Soskin</span>
+                                    <p>
+                                        Soskin Institute<br />
+                                        профессиональная линия
+                                    </p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                    </div><!--/g-row-->
+                    <div class="g-row">
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-01.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Hydropeptide</span>
+                                    <p>Профессиональная Anti-age косметика Hydropeptide</p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand c-brand--center">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-02.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Oxygen</span>
+                                    <p>
+                                        Oxygen Botanicals<br />
+                                        профессиональная линия
+                                    </p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                        <div class="g-col g-col--one-third">
+                            <figure class="c-brand c-brand--last">
+                                <a href="catalog-in.html" class="c-brand__link" data-qtip-alt="Перейти">
+                                    <img src="img/catalog/brand-03.png" class="c-brand__img" alt="Logo" />
+                                </a>
+                                <figcaption class="c-brand__content">
+                                    <span class="c-brand__title">Soskin</span>
+                                    <p>
+                                        Soskin Institute<br />
+                                        профессиональная линия
+                                    </p>
+                                    <a href="catalog-in.html" class="p-btn p-btn--short"><span class="p-btn__inner"></span></a>
+                                </figcaption>
+                            </figure>
+                        </div><!--/g-col-->
+                    </div><!--/g-row-->
+                </div><!--/g-container-->
+            </div><!--/p-section-->
 
             <div class="p-section p-section--thin">
                 <div class="g-container">
@@ -242,7 +328,7 @@
                                 <a href="#" class="f-menu__link">Консалтинг</a>
                             </li>
                             <li class="f-menu__item">
-                                <a href="#" class="f-menu__link f-menu__link--current">Портфолио</a>
+                                <a href="#" class="f-menu__link">Портфолио</a>
                             </li>
                         </ul>
                     </div><!--/g-col-->
@@ -318,10 +404,10 @@
                 <a href="press.html" class="m-menu__link">Пресс-центр</a>
             </li>
             <li>
-                <a href="catalog.html" class="m-menu__link">Каталог</a>
+                <a href="catalog.html" class="m-menu__link m-menu__link--current">Каталог</a>
             </li>
             <li>
-                <a href="portfolio.html" class="m-menu__link m-menu__link--current">Портфолио</a>
+                <a href="portfolio.html" class="m-menu__link">Портфолио</a>
             </li>
             <li>
                 <a href="design.html" class="m-menu__link">Проектирование</a>
@@ -351,16 +437,6 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-    <script>
-        window.Masonry || document.write('<script src="js/vendor/masonry.pkgd.min.js"><\/script>')
-    </script>
-
     <script src="js/app.min.js"></script>
-    <script>
-        $(window).on("load", function () { var o = $("#preloader"), d = o.find(".loader"); d.fadeOut(), o.delay(350).fadeOut("slow", function () { o.remove() }) });
-    </script>
-
 </body>
 </html>

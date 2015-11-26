@@ -1,0 +1,42 @@
+﻿@import "../../modules/_base.scss";
+
+/*Catalog Grid*/
+.c-sidebar,
+.c-main{
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+    min-height:0.01%;
+    box-sizing:border-box;
+}
+.c-sidebar{
+    @include px2rem(margin-bottom, $project-line-height);
+    @include px2rem(padding, 22px 11px 0);
+    position:relative;
+    background:$bg-alt;
+
+    &:before{
+        content:'';
+        display:block;
+        width:800%;
+        position:absolute;
+        top:0; right:0; bottom:0;
+        background:$bg-alt;
+        z-index:-1;
+        display:none;
+    }
+
+
+    @include media($tablet){
+        width:25.532%;
+        @include px2rem(padding, 22px 22px $project-line-height 0);
+        &:before{
+            display:block;
+        }
+    }
+}
+.c-main{
+    @include media($tablet){
+        width:74.468%;
+    }
+}

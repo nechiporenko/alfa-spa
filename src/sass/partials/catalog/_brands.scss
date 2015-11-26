@@ -1,0 +1,36 @@
+﻿@import "../../modules/_base.scss";
+/*Catalog Brands*/
+.c-brand{
+    @include px2rem(margin, 0 auto 2*$project-line-height);
+    @include px2rem(width, 220px);
+
+    @include media($tablet){
+        margin-left:unset;
+        margin-right:unset;
+
+        &.c-brand--center{
+            margin-left:auto;
+            margin-right:auto;
+        }
+        &.c-brand--last{
+            float:right;
+        }
+    }
+}
+.c-brand__link{
+    display:block;
+    position:relative;
+    @include px2rem(height, 126px); //220x126
+}
+
+.c-brand__img{
+    @extend .g-img-centered;
+}
+.c-brand__content{
+    text-align:center;
+    @include font-size(14px);
+}
+.c-brand__title{
+    @extend .g-brand-text;
+
+}

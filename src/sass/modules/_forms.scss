@@ -10,6 +10,7 @@ input[type="tel"],
 input[type="url"],
 input[type="password"],
 textarea {
+    box-sizing: border-box;
     @include appearance(none);
 }
 
@@ -20,7 +21,7 @@ textarea {
     @include px2rem(padding, 6px 10px);//The 6px vertically centers text on FF, ignored by Webkit
     background-color: #fff;
     border: 1px solid $border-color;
-    border-radius:$border-radius;
+    //border-radius:$border-radius;
     color:$text-color;
     box-shadow: none;
     box-sizing: border-box;
@@ -39,7 +40,7 @@ textarea {
 
 .g-input,
 .g-select{
-    @include px2rem(height, 38px);
+    @include px2rem(height, 36px);
 }
 
 .g-textarea{
@@ -49,7 +50,6 @@ textarea {
 .g-label{
     display: block;
     @include px2rem(margin-bottom, 4px);
-    font-weight: bold;
 }
 .g-label__body{
     display: inline-block;

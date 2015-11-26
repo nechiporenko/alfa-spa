@@ -89,11 +89,11 @@ jQuery.extend(verge);
 // Портфолио
 // Лайтбокс
 // Вкладки на странице
+// Покажем / спрячем блок с фильтрами каталога на мобильных
 
 // Сообщения об отправке формы
 // Кнопка скролла страницы
 // Ф-ция скролла к началу элеметна
-// Модальное окно
 // Если браузер не знает о svg-картинках
 jQuery(document).ready(function ($) {
     //Кэшируем
@@ -523,7 +523,7 @@ jQuery(document).ready(function ($) {
     //---------------------------------------------------------------------------------------
     function loadMoreNews() {
         var $list = $('.js-news'), //список новостей
-            $loader = $('#loader'), //иконка лоадера
+            $loader = $('.loader'), //иконка лоадера
             total = $list.data('total'), //через дата-атрибут задаем максимальное кол-во новостей на странице
             bottom; //запишем высоту блока новостей
         
@@ -578,7 +578,7 @@ jQuery(document).ready(function ($) {
     // Портфолио
     //---------------------------------------------------------------------------------------
     function initPortfolioList() {
-        var $loader = $('#loader'),
+        var $loader = $('.loader'),
             flag = false; //будем отслеживать, загружается в данный момент контент или нет
 
         $('.js-folio-list').find('.p-slider__link').each(function () {//если происходит переход на страницу по клику в слайдере на Главной
@@ -724,6 +724,30 @@ jQuery(document).ready(function ($) {
 
 
     //
+    // Покажем / спрячем блок с фильтрами каталога на мобильных
+    //---------------------------------------------------------------------------------------
+    function toggleSideFilters() {
+        var $filter = $('.c-filter');
+        $('.c-sidebar').on('click', '.js-toggle-filter', function () {
+            $(this).toggleClass('active');
+            $filter.slideToggle();
+        });
+
+        function showFiltersOnResize() {
+            if (winW >= BREAKPOINT) { //если перешли с маленького экрана на большой - показали фильтр в любом случае
+                $filter.show();
+                $('.js-toggle-filter').addClass('active'); //если потом переходим на маленький экран - фильтр открыт, стрелка вверх
+            }
+        }
+
+        $window.on('resize', function () {
+            setTimeout(showFiltersOnResize, 800);
+        })
+    }
+    if ($('.js-toggle-filter').length) {
+        toggleSideFilters();
+    }
+    //
     // Сообщения об отправке формы
     //---------------------------------------------------------------------------------------
     // после аякс-отправки формы ($form), если все ок - $form.find('.g-notice--ok').fadeIn();
@@ -773,73 +797,7 @@ jQuery(document).ready(function ($) {
     }
 
 
-    //
-    // Модальное окно
-    //---------------------------------------------------------------------------------------
-    var showModal = (function (link) {
-        var
-        method = {},
-        $overlay,
-        $modal,
-        $close;
-
-        // добавим в документ
-        $overlay = $('<div id="overlay"></div>'); //оверлей
-        $close = $('<a class="modal__close" href="#"><i class="icon-cancel"></i></a>'); //иконка закрыть
-
-
-        $close.on('click', function (e) {
-            e.preventDefault();
-            method.close();
-        });
-
-        // центрируем окно
-        method.center = function () {
-            var top, left;
-
-            top = Math.max($window.height() - $modal.outerHeight(), 0) / 2;
-            left = Math.max($window.width() - $modal.outerWidth(), 0) / 2;
-
-            $modal.css({
-                top: top + $window.scrollTop(),
-                left: left + $window.scrollLeft()
-            });
-        };
-
-
-        // открываем
-        method.open = function (link) {
-            $modal = $(link);
-            $modal.append($close);
-            method.center();
-            $body.append($overlay);
-            $window.bind('resize.modal', method.center);
-            $modal.fadeIn();
-            $overlay.fadeIn();
-
-            $overlay.bind('click', function () {
-                method.close();
-            });
-        };
-
-        // закрываем
-        method.close = function () {
-            $modal.fadeOut('fast');
-            $overlay.fadeOut('fast', function () {
-                $overlay.unbind('click').remove(); //убиваем оверлей
-            });
-            $window.unbind('resize.modal');
-        };
-
-        return method;
-    }());
-
-    // клик по кнопке с атрибутом data-modal - открываем модальное окно
-    $('[data-modal]').on('click', function (e) {//передаем айди модального окна
-        e.preventDefault();
-        var link = $(this).data('modal');
-        if (link) { showModal.open(link); }
-    });
+    
 
     //
     // Если браузер не знает о svg-картинках
