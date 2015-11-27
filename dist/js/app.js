@@ -94,12 +94,13 @@ jQuery.extend(verge);
 // Портфолио
 // Лайтбокс
 // Вкладки на странице
-// Покажем / спрячем блок с фильтрами каталога на мобильных
-
+// Стилизация фильтра сортировки на странице каталога
+// Каталог товаров (фильтры)
 // Сообщения об отправке формы
 // Кнопка скролла страницы
 // Ф-ция скролла к началу элеметна
 // Если браузер не знает о svg-картинках
+// Лоадер (будем показывать во время загрузки контента)
 jQuery(document).ready(function ($) {
     //Кэшируем
     var $window = $(window),
@@ -528,7 +529,6 @@ jQuery(document).ready(function ($) {
     //---------------------------------------------------------------------------------------
     function loadMoreNews() {
         var $list = $('.js-news'), //список новостей
-            $loader = $('.loader'), //иконка лоадера
             total = $list.data('total'), //через дата-атрибут задаем максимальное кол-во новостей на странице
             bottom; //запишем высоту блока новостей
         
@@ -555,7 +555,7 @@ jQuery(document).ready(function ($) {
             var scrollPos = bottom - verge.scrollY() - verge.viewportH();
             if (scrollPos <= 0) {
                 $window.unbind('scroll', scrollToEnd);
-                $loader.fadeIn();
+                contentLoader.show();//показали иконку загрузки
                 $list.after('<ul class="g-hidden" id="hidden"></ul>');
                 var $hidden = $('#hidden');
                 $hidden.load('ajax/_news_content.html li', function () {
@@ -565,7 +565,7 @@ jQuery(document).ready(function ($) {
                     });
                     $list.find('img[data-src]').unveil();//натравим на дозагруженный контент плагин подгрузки картинок
                     $hidden.remove();
-                    $loader.fadeOut();
+                    contentLoader.hide();
                     checkTotal();//новая проверка кол-ва загруженных новостей
                 });
             }
@@ -583,8 +583,6 @@ jQuery(document).ready(function ($) {
     // Портфолио
     //---------------------------------------------------------------------------------------
     function initPortfolioList() {
-        var $loader = $('.loader'),
-            flag = false; //будем отслеживать, загружается в данный момент контент или нет
 
         $('.js-folio-list').find('.p-slider__link').each(function () {//если происходит переход на страницу по клику в слайдере на Главной
             if ($(this).hasClass('active')) {
@@ -595,35 +593,29 @@ jQuery(document).ready(function ($) {
 
         $('.js-folio-list').on('click', '.p-slider__link', function (e) {
             e.preventDefault();
-            if (flag) {
-                return false; //кликаем в момент загрузки контента - игнорируем клик
-            } else {
-                var $el = $(this),
+            var $el = $(this),
                 $target = $el.next('.g-container');
-                if ($el.hasClass('active')) {//складываем "гармошку" - прячем сетку портфолио
-                    $el.removeClass('active');
-                    $target.fadeOut();
-                } else {
-                    if ($target.hasClass('loaded')) {//сетка портфолио уже загружена - просто покажем ее
-                        $el.addClass('active');
-                        $target.fadeIn();
-                    } else {//сетка не загружена - загружаем контент
-                        loadPortfolioGrid($el, $target);
-                    }
+            if ($el.hasClass('active')) {//складываем "гармошку" - прячем сетку портфолио
+                $el.removeClass('active');
+                $target.fadeOut();
+            } else {
+                if ($target.hasClass('loaded')) {//сетка портфолио уже загружена - просто покажем ее
+                    $el.addClass('active');
+                    $target.fadeIn();
+                } else {//сетка не загружена - загружаем контент
+                    loadPortfolioGrid($el, $target);
                 }
             }
         });
 
         function loadPortfolioGrid(link, el) {
-            flag = true;
-            $loader.fadeIn();//показали иконку лоадера
+            contentLoader.show();//показали иконку лоадера
             el.load('ajax/_portfolio_content.html ul', function () {//подгрузили контент
                 el.addClass('loaded').removeClass('g-hidden');//после загрузки, показали блоки
                 link.addClass('active');
                 initPortfolioGrid(el);//подключили функционал
                 smoothScroll(el, 18); //прокрутили вверх к новым блокам
-                $loader.hide();//скрыли лоадер
-                flag = false; //изменили статус
+                contentLoader.hide();//скрыли лоадер
             });
         }
 
@@ -729,37 +721,43 @@ jQuery(document).ready(function ($) {
 
 
     //
-    // Покажем / спрячем блок с фильтрами каталога на мобильных
+    // Стилизация фильтра сортировки на странице каталога
     //---------------------------------------------------------------------------------------
-    function toggleSideFilters() {
-        var $filter = $('.c-filter');
-        $('.c-sidebar').on('click', '.js-toggle-filter', function () {
-            $(this).toggleClass('active');
-            $filter.slideToggle();
-        });
-
-        function showFiltersOnResize() {
-            if (winW >= BREAKPOINT) { //если перешли с маленького экрана на большой - показали фильтр в любом случае
-                $filter.show();
-                $('.js-toggle-filter').addClass('active'); //если потом переходим на маленький экран - фильтр открыт, стрелка вверх
-            }
-        }
-
-        $window.on('resize', function () {
-            setTimeout(showFiltersOnResize, 800);
-        })
-    }
-    if ($('.js-toggle-filter').length) {
-        toggleSideFilters();
-    }
+    $('.js-select').customSelectMenu();
 
 
     //
-    // Стилизация фильтра сортировки на странице каталога
+    // Каталог товаров (фильтры)
     //---------------------------------------------------------------------------------------
-    if ($('.c-filter__select').length) {
-        $('.c-filter__select').customSelectMenu();
-    };
+    $('.c-filter').on('click', '.g-btn', function () {//пример - исправить в реальном приложении!
+        contentLoader.show();
+        //загружаем контент, а пока - 
+        setTimeout(contentLoader.hide, 500);
+    });
+    if ($('html').hasClass('lt-ie9')) {//костыль для ie8
+        $('.c-list__item').filter(':nth-child(3n-2)').css('clear', 'left');
+    }
+
+    $('.c-main').on('click', '.js-cat-load', function () {//дозагрузим тестовый контент
+        contentLoader.show();//показали иконку загрузки
+        var $block = $('.c-main'),
+            $list = $block.find('.c-list');
+        $block.append('<ul class="g-hidden" id="hidden"></ul>');
+        var $hidden = $('#hidden');
+        $hidden.load('ajax/_catalog_content.html li', function () {
+            $hidden.find('li').each(function () {
+                var $item = $(this);
+                $list.append($item);
+            });
+            $list.find('img[data-src]').unveil();//натравим на дозагруженный контент плагин подгрузки картинок
+            $hidden.remove();
+            $('[data-qtip]').qtip('destroy', true);//перезапускаем тултипы
+            $('[data-qtip-alt]').qtip('destroy', true);
+            initTooltips();
+            contentLoader.hide();
+        });
+    })
+
 
 
     //
@@ -824,6 +822,22 @@ jQuery(document).ready(function ($) {
     }
 
     
-
+    //
+    // Лоадер (будем показывать во время загрузки контента)
+    //---------------------------------------------------------------------------------------
+    var contentLoader = {
+        init: function () {
+            $body.append('<div class="overlay" id="overlay"></div><div class="loader" id="loader"></div>');
+        },
+        show: function () {
+            $('#overlay').fadeIn('fast');
+            $('#loader').fadeIn('fast');
+        },
+        hide: function () {
+            $('#overlay').fadeOut('fast');
+            $('#loader').fadeOut('fast');
+        }
+    }
+    contentLoader.init();
     
 });

@@ -1,47 +1,5 @@
 ﻿@import "../../modules/_base.scss";
 /*Catalog Filters*/
-
-.c-filter{
-    display:none;
-    @include media($tablet){
-        display:block;
-    }
-}
-
-.no-js .c-filter{
-    display:block;
-}
-
-.c-filter__title{
-    @include px2rem(margin-bottom, 18px);
-    @include px2rem(padding-right, 30px);
-    @include font-size(24px);
-    font-family:$font-title;
-    color:$primary;
-    position:relative;
-    cursor:pointer;
-
-    &:after{
-        content:'\e808';
-        font-family:'fontello';
-        position:absolute;
-        top:0;
-        right:0;
-        color:$primary;
-        @include transition(transform .3s ease);
-    }
-
-    &.active{
-        &:after{
-            @include transform(rotate(180deg));
-        }
-    }
-
-    @include media($tablet){
-        display:none;
-    }
-}
-
 .c-filter__label{
     display:block;
     @include px2rem(margin-bottom, $project-line-height);

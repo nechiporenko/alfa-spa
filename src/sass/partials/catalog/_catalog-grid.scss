@@ -3,9 +3,6 @@
 /*Catalog Grid*/
 .c-sidebar,
 .c-main{
-    width: 100%;
-    float: left;
-    box-sizing: border-box;
     min-height:0.01%;
     box-sizing:border-box;
 }
@@ -28,15 +25,122 @@
 
 
     @include media($tablet){
+        float:left;
         width:25.532%;
-        @include px2rem(padding, 22px 22px $project-line-height 0);
+        @include px2rem(padding, 22px 22px 28px 0);
         &:before{
             display:block;
         }
     }
 }
 .c-main{
+    .loader{
+        position:fixed;
+        top:50%;
+        left:50%;
+        margin:-16px 0 0 -16px;
+    }
     @include media($tablet){
+        float:right;
         width:74.468%;
+    }
+}
+
+
+
+/*Catalog List*/
+.c-list{
+    list-style-type:none;
+    padding:0;
+    @include px2rem(margin, -11px -11px $project-line-height);
+    @extend .g-clearfix;
+}
+.c-list__item{
+    float:left;
+    @include px2rem(padding, 11px);
+    @include px2rem(margin-bottom, 7px);
+    min-height:1px;
+    width:100%;
+    box-sizing:border-box;
+
+    @include media($mobile){
+        width:50%;
+        &:nth-child(2n+1){
+            clear:left;
+        }
+    }
+
+    @include media($desktop){
+        width:(100%)/3;
+        &:nth-child(2n+1){
+            clear:none;
+        }
+        &:nth-child(3n-2){
+            clear:left;
+        }
+    }
+}
+
+/*Catalog List Item*/
+.c-list__link{
+    text-decoration:none;
+    color:$text-color;
+}
+.c-list__thumb{
+    margin:0;
+
+}
+.c-list__wrap{
+    @include px2rem(margin-bottom, 20px);
+    border:1px solid $border-color;
+    position:relative;
+    @include transition(border-color .1s ease);
+
+    &:before{
+        content:'';
+        display:block;
+        position:absolute;
+        top:0; right:0; bottom:0; left:0;
+        z-index:1;
+        background-color:rgba(#fff, .01);
+        @include transition(background-color .3s ease);
+    }
+
+    &:after{
+        content:'';
+        display:block;
+        padding-top:100%;
+    }
+
+    &:hover,
+    &:active{
+        border-color:$primary;
+    }
+}
+
+.c-list__img{
+    @extend .g-img-centered;
+    max-width:98%;
+    max-height:98%;
+}
+
+.c-list__title{
+    @include px2rem(padding, 0 10px);
+    @include font-size(12px);
+    text-transform:uppercase;
+    line-height:1.5;
+}
+
+/*Catalog list item - hover*/
+.c-list__link{
+    &:hover,
+    &:active{
+        color:$primary;
+
+        .c-list__wrap{
+            &:before{
+                background-color:rgba(#fff, .8);
+            }
+        }
     }
 }

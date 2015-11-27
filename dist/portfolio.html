@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script src="js/vendor/modernizr.js"></script>
     <style>
-        .js #preloader{position:fixed;left:0;top:0;right:0;bottom:0;background:#fbfafa;z-index:4000}#preloader .loader{width:32px;height:32px;position:absolute;left:50%;top:50%;background:url(img/loader.gif) 50% 50% no-repeat;margin:-16px 0 0 -16px}.no-js #preloader{display:none}
+        .js #preloader{position:fixed;left:0;top:0;right:0;bottom:0;background:#fbfafa;z-index:4000}#preloader .icon{width:32px;height:32px;position:absolute;left:50%;top:50%;background:url(img/loader.gif) 50% 50% no-repeat;margin:-16px 0 0 -16px}.no-js #preloader{display:none}
     </style>
     <link rel="stylesheet" href="css/app.css">       
     <!--[if lt IE 9]>
@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="preloader">
-        <span class="loader"></span>
+        <span class="icon"></span>
     </div>
     <div id="page" class="fixed-d-menu">
         <header class="header">
@@ -110,7 +110,6 @@
                         <div class="g-container g-hidden"></div>
                     </li>
                 </ul>
-                <div class="loader"></div>
             </div><!--/p-slider-->
 
             <div class="p-section p-section--thin">
@@ -359,7 +358,7 @@
 
     <script src="js/app.min.js"></script>
     <script>
-        $(window).on("load", function () { var o = $("#preloader"), d = o.find(".loader"); d.fadeOut(), o.delay(350).fadeOut("slow", function () { o.remove() }) });
+        $(window).on("load", function () { var o = $("#preloader"), d = o.find(".icon"); d.fadeOut(), o.delay(350).fadeOut("slow", function () { o.remove() }) });
     </script>
 
 </body>

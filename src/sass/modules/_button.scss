@@ -64,7 +64,8 @@
     }
 
     &:hover,
-    &:active{
+    &:active,
+    &:focus{
         outline:0;
         
         &:before{

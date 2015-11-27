@@ -53,6 +53,14 @@
     }
 }
 
+.no-svg{
+    .f-contacts{
+        &:before{
+            background-image:url(../img/logo.png);
+        }
+    }
+}
+
 .f-contacts__addr{
     @include margin(26px 0);
     @include font-size(12px);
