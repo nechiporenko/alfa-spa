@@ -21,7 +21,6 @@ textarea {
     @include px2rem(padding, 6px 10px);//The 6px vertically centers text on FF, ignored by Webkit
     background-color: #fff;
     border: 1px solid $border-color;
-    //border-radius:$border-radius;
     color:$text-color;
     box-shadow: none;
     box-sizing: border-box;
@@ -44,7 +43,7 @@ textarea {
 }
 
 .g-textarea{
-    @include px2rem(min-height, 65px);
+    @include px2rem(min-height, 126px);
 }
 
 .g-label{

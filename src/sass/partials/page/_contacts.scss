@@ -1,0 +1,60 @@
+﻿@import "../../modules/_base.scss";
+/*Contacts Page*/
+.contacts-page-title{
+    @include px2rem(margin, $project-line-height 0 8px 0);
+    font-family:$font-title;
+    color:$primary;
+    @include font-size(24px);
+    line-height:1.2;
+}
+
+.contacts-page-subtitle{
+    @extend .g-title-h1;
+    @include px2rem(margin-bottom, 2*$project-line-height);
+    text-transform:none;
+}
+
+.contacts-info{
+    @include font-size(14px);
+
+    a{
+        text-decoration:none;
+    }
+}
+
+.contacts{
+    @include px2rem(padding, 9px 0);
+}
+.contacts__input{
+    @extend .g-input;
+    @include px2rem(height, 54px);
+}
+.contacts__textarea{
+    @extend .g-textarea;
+}
+
+.contacts__input,
+.contacts__textarea{
+    @include px2rem(margin-bottom, $project-line-height);
+    @include font-size(18px);
+
+    @include placeholder{
+        color:$text-color;
+    }
+}
+
+/*Google Map*/
+.map{
+    @include px2rem(height, 360px);
+    @include px2rem(margin-bottom, 18px);
+    background:#d9d9d9;
+
+    @include media($desktop){
+        @include px2rem(height, 504px);
+    }
+}
+.map__noscrollbar {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
