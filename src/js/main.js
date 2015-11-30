@@ -453,6 +453,12 @@ jQuery(document).ready(function ($) {
         var $list = $('.js-news'), //список новостей
             total = $list.data('total'), //через дата-атрибут задаем максимальное кол-во новостей на странице
             bottom; //запишем высоту блока новостей
+
+        var $grid = $list.masonry({//натравим masonry (на Apple без него сетка отображается не корректно)
+            itemSelector: '.p-grid__item',
+            columnWidth: '.p-grid__sizer',
+            percentPosition: true
+        });
         
         checkTotal();
 
@@ -483,7 +489,7 @@ jQuery(document).ready(function ($) {
                 $hidden.load('ajax/_news_content.html li', function () {
                     $hidden.find('li').each(function () {
                         var $item = $(this);
-                        $list.append($item);
+                        $list.append($item).masonry('appended', $item); //добавили в список и в masonry
                     });
                     $list.find('img[data-src]').unveil();//натравим на дозагруженный контент плагин подгрузки картинок
                     $hidden.remove();
