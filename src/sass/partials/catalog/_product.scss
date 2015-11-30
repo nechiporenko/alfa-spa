@@ -1,0 +1,40 @@
+﻿@import "../../modules/_base.scss";
+/*Product Page*/
+.product-thumb{
+    width:100%;
+    @include px2rem(max-width, 300px);
+    @include px2rem(margin, 0 auto $project-line-height);
+    border:1px solid $border-color;
+    position:relative;
+    box-sizing:border-box;
+
+    &:after{
+        content:'';
+        display:block;
+        padding-top:100%;
+    }
+
+    @include media($tablet){
+        float:left;
+        @include px2rem(margin, 0 22px $project-line-height 0);
+    }
+}
+
+.product-thumb__img{
+    @extend .g-img-centered;
+    max-width:98%;
+    max-height:98%;
+}
+
+.product-title{
+    font-family:$font-title;
+    @include font-size(16px);
+    line-height:1.125;
+    text-transform:uppercase;
+}
+.product-subtitle{
+    @include px2rem(margin-bottom, 24px);
+    @include font-size(12px);
+    color:$primary;
+    text-transform:uppercase;
+}
