@@ -25,6 +25,15 @@
     }
 }
 
+.lt-ie9{//костыль для ие8
+    .p-grid__sizer{
+        width:(99%)/3;
+    }
+    .p-grid__item{
+        width:(99%)/3;
+    }
+}
+
 .p-grid__link{
     display:block;
     text-decoration:none;

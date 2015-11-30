@@ -11,6 +11,13 @@
     @extend .grid__item;
 }
 
+.lt-ie9{//костыль для ie8
+    .folio-grid__item{
+        width:(99%)/3;
+    }
+}
+
+
 .folio-grid__wrap{
     @extend .grid__link;
     cursor:pointer;
