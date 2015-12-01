@@ -27,10 +27,13 @@
 
 .lt-ie9{//костыль для ие8
     .p-grid__sizer{
-        width:(99%)/3;
+        width:33%;
     }
     .p-grid__item{
-        width:(99%)/3;
+        width:33%;
+    }
+    .p-grid__item--2x{
+        width:65%;
     }
 }
 
