@@ -1,0 +1,10 @@
+﻿@import "../../modules/_base.scss";
+/*Staff Section*/
+.staff{
+    text-align:center;
+    @include font-size(14px);
+
+    @include media($tablet){
+        text-align:left;
+    }
+}

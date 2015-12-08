@@ -1,0 +1,50 @@
+﻿@import "../../modules/_base.scss";
+/*Partners (Static) Section*/
+.b-partners{
+    @extend .grid;
+}
+.b-partners__item{
+    float:left;
+    box-sizing:border-box;
+    @include px2rem(padding, 11px);
+    min-height:1px;
+    width:50%;
+
+    @include media($mobile){
+        width:(100%)/3;
+    }
+    @include media(min-width em(640)){
+        width:25%;
+    }
+    @include media($tablet){
+        width:20%;
+    }
+    @include media($desktop){
+        width:(100%)/6;
+    }
+}
+
+.b-partners__thumb{
+    margin:0;
+    border:1px solid $border-color;
+    @include transition(border-color .3s ease);
+
+    &:hover{
+        border-color:$primary;
+    }
+}
+.b-partners__link{
+    display:block;
+    position:relative;
+
+     &:after{
+        content:'';
+        display:block;
+        padding-top:100%;
+    }
+}
+.b-partners__img{
+    @extend .partners__img;
+    max-width:98%;
+    max-height:98%;
+}
